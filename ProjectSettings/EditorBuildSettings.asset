@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+    path: Assets/Scenes/sehun_park/ConnectionScene.unity
+    guid: fe14359f1849aba4d94e7a4b1cc0f334
+  - enabled: 1
+    path: Assets/Scenes/sehun_park/GameScene.unity
+    guid: f2bf310721adde84d87e9e1820ac0598
   m_configObjects: {}
