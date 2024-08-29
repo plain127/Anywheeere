@@ -271,12 +271,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _ellipsoidOverride: {fileID: 0}
   _originAuthority: 0
-  _latitude: 34.992785895507716
-  _longitude: 135.7785126688063
+  _latitude: 41.88879648836531
+  _longitude: 12.491619354250437
   _height: 2250
-  _ecefX: -3750030.621867936
-  _ecefY: 3649482.737147937
-  _ecefZ: 3638501.598173244
+  _ecefX: 4644322.212270954
+  _ecefY: 1028908.7570023366
+  _ecefZ: 4237919.075311686
   _scale: 1
 --- !u!4 &545074153
 Transform:
@@ -538,7 +538,7 @@ PrefabInstance:
     - target: {fileID: 3745315273336894566, guid: 7ab9d8aececb8af4c87c77cdb6384bd7,
         type: 3}
       propertyPath: far clip plane
-      value: 100000
+      value: 10000
       objectReference: {fileID: 0}
     - target: {fileID: 3745315273336894566, guid: 7ab9d8aececb8af4c87c77cdb6384bd7,
         type: 3}
@@ -558,7 +558,7 @@ PrefabInstance:
     - target: {fileID: 7470539085714927588, guid: 7ab9d8aececb8af4c87c77cdb6384bd7,
         type: 3}
       propertyPath: moveSpeed
-      value: 3000
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 9098348072640476505, guid: 7ab9d8aececb8af4c87c77cdb6384bd7,
         type: 3}
@@ -568,7 +568,7 @@ PrefabInstance:
     - target: {fileID: 9098348072640476505, guid: 7ab9d8aececb8af4c87c77cdb6384bd7,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1500
+      value: -2100
       objectReference: {fileID: 0}
     - target: {fileID: 9098348072640476505, guid: 7ab9d8aececb8af4c87c77cdb6384bd7,
         type: 3}
