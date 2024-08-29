@@ -1,16 +1,15 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using Photon.Pun;
 
-public class PlayerMove : MonoBehaviourPun
+public class Test : MonoBehaviour
 {
     public float moveSpeed = 5.0f;
     CharacterController cc;
 
     // 중력
-    public float gravity = -9.81f;
+    float gravity = 0f;
     // y 속력
     float yVelocity;
     // 점프 초기 속력
@@ -20,14 +19,12 @@ public class PlayerMove : MonoBehaviourPun
     void Start()
     {
         cc = GetComponent<CharacterController>();
-        // 내 것일 때만 카메라를 활성화하자.
-        cam.SetActive(photonView.IsMine);
+
     }
 
     void Update()
     {
-        if (photonView.IsMine)
-        {
+
             // 1. 키보드 WASD 키 입력을 받자
             float h = Input.GetAxis("Horizontal");
             float v = Input.GetAxis("Vertical");
@@ -61,7 +58,7 @@ public class PlayerMove : MonoBehaviourPun
 
             // 3, 그 방향으로 움직이자.
             cc.Move(dir * moveSpeed * Time.deltaTime);
-        }
+        
 
     }
 }
