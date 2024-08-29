@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Networking;  // http 통신을 위한 네임 스페이스
 using System.Text;      // json, csv 같은 문서 형태의 인코딩  (UTF-8)을 위한 네임 스페이스
 using UnityEngine.UI;
+using System;
 
 
 public class HttpManager : MonoBehaviour
@@ -50,6 +51,7 @@ public class HttpManager : MonoBehaviour
         StartCoroutine(GetImageRequest(url));
     }
 
+    // 이미지 파일을 Get으로 받는 함수
     IEnumerator GetImageRequest(string url)
     {
         // get(Texture) 통신을 준비한다.
@@ -74,5 +76,69 @@ public class HttpManager : MonoBehaviour
             text_response.text = request.error;
         }
     }
+    
+    public void GetJson()
+    {
 
+    }
+
+    IEnumerator GetJsonImageRequest(string url)
+    {
+        // url로 부터 Get으로 요청을 준비한다. 
+        UnityWebRequest request = UnityWebRequest.Get(url);
+        // 준비된 요청을 서버에 전달하고 응답이 올때까지 기다린다.
+        yield return request.SendWebRequest();
+        // 만일, 응답이 성공이라면...
+        if (request.result == UnityWebRequest.Result.Success)
+        {
+            // 텍스트를 받는다.
+            string result = request.downloadHandler.text;
+            
+            //응답받은 json 데이터를 RequestImage 구조체 형태로 파싱한다.
+            RequestImage reqImageData = JsonUtility.FromJson<RequestImage>(result);
+
+            byte[] binaries = Encoding.UTF8.GetBytes(reqImageData.img);
+            byte[] imageBytes = Convert.FromBase64String(reqImageData.img);
+
+            Texture2D texture = new Texture2D(2, 2);
+            if (texture.LoadImage(imageBytes))
+            {
+                img_response.texture = texture;
+
+                text_response.text = "이미지 로드 성공";
+            }
+            else
+            {
+                //이미지 로드 실패 시 오류 메시지 출력
+                text_response.text = "이미지 로드 실패";
+            }
+
+            //if(binaries.Length >0)
+            //{
+            //    Texture2D texture = new Texture2D(2, 2);
+                
+            //    // byte 배열로 된 raw 데이터를 텍스쳐 형태로 변환해서 texture2D 인스턴스로 변환한다.
+            //    texture.LoadRawTextureData(binaries);
+            //    texture.EncodeToJPG();
+
+            //    img_response.texture = texture;
+                
+            //}
+
+        }
+        // 그렇지 않다면...
+        else
+        {
+        // 에러 내용을 text_response에 전달한다.
+        text_response.text = request.responseCode + " : " + request.error;
+            Debug.LogError(request.responseCode + " : " + request.error);
+        }
+
+    }
+}
+
+[System.Serializable]
+public struct RequestImage
+{
+    public string img;
 }
