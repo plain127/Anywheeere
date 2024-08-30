@@ -47,6 +47,7 @@ public class HttpManager : MonoBehaviour
             text_response.text = request.error;
         }
 
+        #region 수업 내용 Get Image
 
     }
     public void GetImage()
@@ -79,7 +80,9 @@ public class HttpManager : MonoBehaviour
             text_response.text = request.error;
         }
     }
-    
+    #endregion
+
+    #region 수업 Get Json
     public void GetJson()
     {
 
@@ -138,6 +141,7 @@ public class HttpManager : MonoBehaviour
         }
 
     }
+    #endregion
 
     // 서버에 Json 데이터를 Post하는 함수
     public void PostJson()
@@ -178,38 +182,61 @@ public class HttpManager : MonoBehaviour
         }
     }
 
+
+
     public void PostJsonToAI()
     {
         StartCoroutine(PostPointJsonRequest(url));
     }
     IEnumerator PostPointJsonRequest(string url)
     {
-        PointedPlace testData = new PointedPlace(40.6893f, -74.0448f, "NewYork", "StatueOfLiberty" );
-        string pointJsonData = JsonUtility.ToJson(testData, true);
-        byte[] jsonBins = Encoding.UTF8.GetBytes(pointJsonData);
+        string jsonData = "{\"text\":\"안녕하세요\"}";       
+        using(UnityWebRequest www = UnityWebRequest.Get("http://meta-ai.iptime.org:9000/docent"))
+        {
+            byte [] jsonByte = Encoding.UTF8.GetBytes(jsonData);
+            www.uploadHandler = new UploadHandlerRaw(jsonByte);
+            www.SetRequestHeader("Content-Type", "application/json");   
+            yield return www.SendWebRequest();
 
-        UnityWebRequest request = new UnityWebRequest(url, "POST");
-        request.SetRequestHeader("Content-Type", "application/json");
+            if (www.result == UnityWebRequest.Result.Success)
+            {
+                Debug.LogError(www.downloadHandler.text);
+            }
+            else
+            {
+
+                Debug.LogError(www.error);
+            }
+        }
+
+        //    PointedPlace testData = new PointedPlace(40.6893f, -74.0448f, "NewYork", "StatueOfLiberty");
+        //string pointJsonData = JsonUtility.ToJson(testData, true);
+        //byte[] jsonBins = System.Text.Encoding.UTF8.GetBytes(pointJsonData);
+
+        //UnityWebRequest request = new UnityWebRequest(url, "POST");
+        //request.SetRequestHeader("Content-Type", "application/json");
+        ////request.uploadHandler = new UploadHandlerRaw(jsonBins);
         //request.uploadHandler = new UploadHandlerRaw(jsonBins);
-        request.uploadHandler = new UploadHandlerRaw(jsonBins);
-        request.downloadHandler = new DownloadHandlerBuffer();
+        //request.downloadHandler = new DownloadHandlerBuffer();
 
-        yield return request.SendWebRequest();
+        //yield return request.SendWebRequest();
 
-        if (request.result == UnityWebRequest.Result.Success)
-        {
-            // 다운로드 핸들러에서 텍스트 값을 받아서 UI에 출력한다.
-            string response = request.downloadHandler.text;
-            text_response.text = response;
-            Debug.LogError(text_response.text);
-        }
-        else
-        {
-            text_response.text = request.error;
-            Debug.LogError(request.error);
-        }
+        //if (request.result == UnityWebRequest.Result.Success)
+        //{
+        //    // 다운로드 핸들러에서 텍스트 값을 받아서 UI에 출력한다.
+        //    string response = request.downloadHandler.text;
+        //    text_response.text = response;
+        //    Debug.LogError(text_response.text);
+        //}
+        //else
+        //{
+        //    text_response.text = request.error;
+        //    Debug.LogError(request.error);
+        //}
 
     }
+
+
 }
 
 

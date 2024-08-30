@@ -663,7 +663,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adb37bf53e34ddf47a2f45a7e45b5ec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  url: https://meta-ai-iptime-org:9000/docent
+  url: http://39.121.152.94/postjson
   text_response: {fileID: 928755338}
   img_response: {fileID: 1718045661}
   userInputs:
