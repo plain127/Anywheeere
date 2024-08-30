@@ -90,8 +90,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f1b461d6089d4649b61fd2134b22db0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
-  jumpPower: 3
+  moveSpeed: 200
+  gravity: 0
+  jumpPower: 0
   cam: {fileID: 3917671789148752847}
 --- !u!114 &5258941180456397766
 MonoBehaviour:
@@ -459,8 +460,8 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
+  near clip plane: 1
+  far clip plane: 10000
   field of view: 60
   orthographic: 0
   orthographic size: 5

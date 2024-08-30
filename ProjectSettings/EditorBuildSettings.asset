@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/sehun_park/GameScene.unity
     guid: f2bf310721adde84d87e9e1820ac0598
+  - enabled: 1
+    path: Assets/Scenes/sehun_park/MapTestScene.unity
+    guid: 240ee4cf254ceb94fb81de67358b2b67
   m_configObjects: {}

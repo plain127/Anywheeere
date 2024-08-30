@@ -271,12 +271,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _ellipsoidOverride: {fileID: 0}
   _originAuthority: 0
-  _latitude: 41.88879648836531
-  _longitude: 12.491619354250437
+  _latitude: 40.68937953465613
+  _longitude: -74.04485445371682
   _height: 2250
-  _ecefX: 4644322.212270954
-  _ecefY: 1028908.7570023366
-  _ecefZ: 4237919.075311686
+  _ecefX: 1331777.246542791
+  _ecefY: -4658219.438305623
+  _ecefZ: 4137795.4211433213
   _scale: 1
 --- !u!4 &545074153
 Transform:
@@ -528,37 +528,12 @@ PrefabInstance:
     - target: {fileID: 980502290173848799, guid: 7ab9d8aececb8af4c87c77cdb6384bd7,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2762980912756827776, guid: 7ab9d8aececb8af4c87c77cdb6384bd7,
         type: 3}
       propertyPath: sceneViewId
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3745315273336894566, guid: 7ab9d8aececb8af4c87c77cdb6384bd7,
-        type: 3}
-      propertyPath: far clip plane
-      value: 10000
-      objectReference: {fileID: 0}
-    - target: {fileID: 3745315273336894566, guid: 7ab9d8aececb8af4c87c77cdb6384bd7,
-        type: 3}
-      propertyPath: near clip plane
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7470539085714927588, guid: 7ab9d8aececb8af4c87c77cdb6384bd7,
-        type: 3}
-      propertyPath: gravity
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7470539085714927588, guid: 7ab9d8aececb8af4c87c77cdb6384bd7,
-        type: 3}
-      propertyPath: jumpPower
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7470539085714927588, guid: 7ab9d8aececb8af4c87c77cdb6384bd7,
-        type: 3}
-      propertyPath: moveSpeed
-      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 9098348072640476505, guid: 7ab9d8aececb8af4c87c77cdb6384bd7,
         type: 3}
