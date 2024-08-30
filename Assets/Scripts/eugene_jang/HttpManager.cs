@@ -13,6 +13,9 @@ public class HttpManager : MonoBehaviour
     public Text text_response;
     public RawImage img_response;
 
+    public List<InputField> userInputs = new List<InputField>();
+    public Toggle freeUser;
+
     public void Get()
     {
         StartCoroutine(GetRequest(url));
@@ -135,10 +138,93 @@ public class HttpManager : MonoBehaviour
         }
 
     }
+
+    // 서버에 Json 데이터를 Post하는 함수
+    public void PostJson()
+    {
+        StartCoroutine(PostJsonRequest(url));
+    }
+    IEnumerator PostJsonRequest(string url)
+    {
+        // 사용자의 입력 정보를 Json 데이터로 변환하기
+        JoinUserData userData = new JoinUserData();
+        userData.id = Convert.ToInt32(userInputs[0].text);
+        userData.password = userInputs[1].text;
+        userData.nickName = userInputs[2].text;
+        userData.freeAccount = freeUser.isOn;
+        string userJsonData = JsonUtility.ToJson(userData, true);
+        byte[] jsonBins = Encoding.UTF8.GetBytes(userJsonData);
+
+        // POST를 하기 위한 준비를 한다.
+        UnityWebRequest request = new UnityWebRequest(url, "POST");
+        request.SetRequestHeader("Content-Type", "application/json");
+        request.uploadHandler = new UploadHandlerRaw(jsonBins);
+        request.downloadHandler = new DownloadHandlerBuffer();
+
+        // 서버에 Post를 전송하고 응답이 올 때 까지 기다린다.
+        yield return request.SendWebRequest();
+
+        if(request.result == UnityWebRequest.Result.Success)
+        {
+            // 다운로드 핸들러에서 텍스트 값을 받아서 UI에 출력한다.
+            string response = request.downloadHandler.text;
+            text_response.text = response;
+            Debug.LogError(text_response.text);
+        }
+        else
+        {
+            text_response.text = request.error;
+            Debug.LogError(request.error);
+        }
+    }
+
+    public void PostJsonToAI()
+    {
+        StartCoroutine(PostPointJsonRequest(url));
+    }
+    IEnumerator PostPointJsonRequest(string url)
+    {
+        PointedPlace testData = new PointedPlace(40.6893f, -74.0448f, "NewYork", "StatueOfLiberty" );
+        string pointJsonData = JsonUtility.ToJson(testData, true);
+        byte[] jsonBins = Encoding.UTF8.GetBytes(pointJsonData);
+
+        UnityWebRequest request = new UnityWebRequest(url, "POST");
+        request.SetRequestHeader("Content-Type", "application/json");
+        //request.uploadHandler = new UploadHandlerRaw(jsonBins);
+        request.uploadHandler = new UploadHandlerRaw(jsonBins);
+        request.downloadHandler = new DownloadHandlerBuffer();
+
+        yield return request.SendWebRequest();
+
+        if (request.result == UnityWebRequest.Result.Success)
+        {
+            // 다운로드 핸들러에서 텍스트 값을 받아서 UI에 출력한다.
+            string response = request.downloadHandler.text;
+            text_response.text = response;
+            Debug.LogError(text_response.text);
+        }
+        else
+        {
+            text_response.text = request.error;
+            Debug.LogError(request.error);
+        }
+
+    }
 }
+
+
 
 [System.Serializable]
 public struct RequestImage
 {
     public string img;
+}
+
+[System.Serializable]
+public struct JoinUserData
+{
+    public int id;
+    public string password;
+    public string nickName;
+    public bool freeAccount;
 }

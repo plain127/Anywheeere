@@ -23,14 +23,14 @@ public struct UserData
 
     }
 }
-
+[System.Serializable]
 public struct PointedPlace
 {
-    int latitude;
-    int longitude;
+    float latitude;
+    float longitude;
     string city;
     string landmark;
-    public PointedPlace(int latitude, int longitude, string city, string landmark)
+    public PointedPlace(float latitude, float longitude, string city, string landmark)
     {
         this.latitude = latitude;
         this.longitude = longitude;
@@ -63,8 +63,8 @@ public class JsonParser : MonoBehaviour
         //Application.streamingAssetsPath 모바일의 경우 상대 경로
         #endregion
 
-        string readString = ReadJsonData(Application.dataPath, "박원석json");
-        print(readString);
+        //string readString = ReadJsonData(Application.dataPath, "박원석json");
+        //print(readString);
     }
 
     // text 데이터를 파일로 저장하기
@@ -83,19 +83,19 @@ public class JsonParser : MonoBehaviour
     }
 
     // text 파일을 읽어오기
-    public string ReadJsonData(string path, string fileName)
-    {
-        string readText;
+    //public string ReadJsonData(string path, string fileName)
+    //{
+    //    string readText;
 
-        //1. 파일 스트림을 읽기 모드로 연다
-        string fullPath = Path.Combine(path, fileName);
-        FileStream fs = new FileStream(fullPath, FileMode.Open, FileAccess.Read);
+    //    //1. 파일 스트림을 읽기 모드로 연다
+    //    string fullPath = Path.Combine(path, fileName);
+    //    FileStream fs = new FileStream(fullPath, FileMode.Open, FileAccess.Read);
 
-        // 2. 스트림으로부터 데이터(byte)를 읽어 온다.
-        StreamReader sr = new StreamReader(fs, Encoding.UTF8);
-        readText = sr.ReadToEnd();
+    //    // 2. 스트림으로부터 데이터(byte)를 읽어 온다.
+    //    StreamReader sr = new StreamReader(fs, Encoding.UTF8);
+    //    readText = sr.ReadToEnd();
 
-        // 3. 읽은 데이터를 string으로 변환해서 반환한다.
-        return readText;
-    }
+    //    // 3. 읽은 데이터를 string으로 변환해서 반환한다.
+    //    return readText;
+    //}
 }
