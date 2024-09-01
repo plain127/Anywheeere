@@ -22,6 +22,7 @@ public class HttpManager : MonoBehaviour
     }
 
     // Get 통신 코루틴 함수
+    #region 수업 내용 Get
     IEnumerator GetRequest(string url)
     {
         // http Get 통신 준비를 한다.
@@ -47,7 +48,8 @@ public class HttpManager : MonoBehaviour
             text_response.text = request.error;
         }
 
-        #region 수업 내용 Get Image
+#endregion
+    #region 수업 내용 Get Image
 
     }
     public void GetImage()
@@ -143,6 +145,7 @@ public class HttpManager : MonoBehaviour
     }
     #endregion
 
+    #region 수업 내용 Post
     // 서버에 Json 데이터를 Post하는 함수
     public void PostJson()
     {
@@ -182,6 +185,7 @@ public class HttpManager : MonoBehaviour
         }
     }
 
+    #endregion
 
 
     public void PostJsonToAI()
@@ -208,6 +212,8 @@ public class HttpManager : MonoBehaviour
                 Debug.LogError(www.error);
             }
         }
+
+
 
         //    PointedPlace testData = new PointedPlace(40.6893f, -74.0448f, "NewYork", "StatueOfLiberty");
         //string pointJsonData = JsonUtility.ToJson(testData, true);
@@ -240,6 +246,7 @@ public class HttpManager : MonoBehaviour
 }
 
 
+#region 수업에서 사용한 구조체
 
 [System.Serializable]
 public struct RequestImage
@@ -255,3 +262,4 @@ public struct JoinUserData
     public string nickName;
     public bool freeAccount;
 }
+#endregion
