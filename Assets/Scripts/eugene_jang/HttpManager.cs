@@ -5,6 +5,8 @@ using UnityEngine.Networking;  // http 통신을 위한 네임 스페이스
 using System.Text;      // json, csv 같은 문서 형태의 인코딩  (UTF-8)을 위한 네임 스페이스
 using UnityEngine.UI;
 using System;
+using System.Xml.Serialization;
+using static System.Net.WebRequestMethods;
 
 
 public class HttpManager : MonoBehaviour
@@ -15,6 +17,7 @@ public class HttpManager : MonoBehaviour
 
     public List<InputField> userInputs = new List<InputField>();
     public Toggle freeUser;
+    public AudioClip docentAudio;
 
     public void Get()
     {
@@ -190,7 +193,7 @@ public class HttpManager : MonoBehaviour
 
     public void PostJsonToAI()
     {
-        StartCoroutine(PostPointJsonRequest(url));
+        StartCoroutine(PostPointJsonRequest(url+"docent"));
     }
     IEnumerator PostPointJsonRequest(string url)
     {
@@ -205,16 +208,16 @@ public class HttpManager : MonoBehaviour
             if (www.result == UnityWebRequest.Result.Success)
             {
                 Debug.LogError(www.downloadHandler.text);
+                text_response.text = www.downloadHandler.text;
+                
             }
             else
             {
-
                 Debug.LogError(www.error);
             }
         }
 
-
-
+        #region 망한 post요청
         //    PointedPlace testData = new PointedPlace(40.6893f, -74.0448f, "NewYork", "StatueOfLiberty");
         //string pointJsonData = JsonUtility.ToJson(testData, true);
         //byte[] jsonBins = System.Text.Encoding.UTF8.GetBytes(pointJsonData);
@@ -239,6 +242,51 @@ public class HttpManager : MonoBehaviour
         //    text_response.text = request.error;
         //    Debug.LogError(request.error);
         //}
+        #endregion
+    }
+
+    public void GetAudioFromAI()
+    {
+        StartCoroutine(GetAudioRequest(url));
+    }
+
+    IEnumerator GetAudioRequest(string url)
+    {
+        string jsonData = "{\"audio\":\"/result.wav\"}";
+        using (UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip("http://meta-ai.iptime.org:9000/docent", AudioType.WAV ))
+        {
+            byte[] jsonByte = Encoding.UTF8.GetBytes(jsonData);
+            www.uploadHandler = new UploadHandlerRaw(jsonByte);
+            www.SetRequestHeader("Content-Type", "application/json");
+            www.downloadHandler = new DownloadHandlerBuffer();
+            yield return www.SendWebRequest();
+
+            if (www.result == UnityWebRequest.Result.Success)
+            {
+                //docentAudio = DownloadHandlerAudioClip.GetContent(www);
+                string responseText = www.downloadHandler.text;
+
+                if (docentAudio != null)
+                {
+                    PlayAudioClip(docentAudio);
+                }
+                Debug.LogError(www.downloadHandler.text);
+                text_response.text = www.downloadHandler.text;
+
+            }
+            else
+            {
+                Debug.LogError(www.error);
+            }
+        }
+    }
+    
+    void PlayAudioClip(AudioClip clip)
+    {
+        AudioSource audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.clip = clip;
+        audioSource.Play();
+
 
     }
 
