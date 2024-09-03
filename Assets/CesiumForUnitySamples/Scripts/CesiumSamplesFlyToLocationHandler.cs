@@ -2,6 +2,7 @@ using CesiumForUnity;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Mathematics;
+using UnityEngine.UI;
 
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
@@ -25,9 +26,12 @@ public class CesiumSamplesFlyToLocationHandler : MonoBehaviour
         "The first element represents yaw, i.e. horizontal rotation or " +
         "rotation around the Y-axis.\n" +
         "The second element represents yaw, i.e. vertical rotation or " +
-        "rotation around the Y-axis.\n" +
+        "rotation around the X-axis.\n" +
         "If no value is provided for a location, Vector2.zero is used by default.")]
     public List<Vector2> yawAndPitchAngles = new List<Vector2>();
+
+    [Tooltip("Buttons to trigger the fly-to locations.")]
+    public Button[] locationButtons;
 
     const int locationLimit = 8;
 
@@ -43,6 +47,16 @@ public class CesiumSamplesFlyToLocationHandler : MonoBehaviour
             this.yawAndPitchAngles.RemoveRange(
                 this.locations.Count - 1,
                 this.yawAndPitchAngles.Count - this.locations.Count);
+        }
+    }
+
+    private void Start()
+    {
+        // Initialize buttons with click listeners
+        for (int i = 0; i < locationButtons.Length; i++)
+        {
+            int index = i; // Local copy to avoid closure issues
+            locationButtons[i].onClick.AddListener(() => FlyToLocation(index));
         }
     }
 
@@ -65,7 +79,7 @@ public class CesiumSamplesFlyToLocationHandler : MonoBehaviour
 
     #region Inputs
 
-    static bool GetKey1Down()
+    public static bool GetKey1Down()
     {
 #if ENABLE_INPUT_SYSTEM
         return Keyboard.current.digit1Key.isPressed || Keyboard.current.numpad1Key.isPressed;
@@ -74,7 +88,7 @@ public class CesiumSamplesFlyToLocationHandler : MonoBehaviour
 #endif
     }
 
-    static bool GetKey2Down()
+    public static bool GetKey2Down()
     {
 #if ENABLE_INPUT_SYSTEM
         return Keyboard.current.digit2Key.isPressed || Keyboard.current.numpad2Key.isPressed;
@@ -82,7 +96,7 @@ public class CesiumSamplesFlyToLocationHandler : MonoBehaviour
         return Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2);
 #endif
     }
-    static bool GetKey3Down()
+    public static bool GetKey3Down()
     {
 #if ENABLE_INPUT_SYSTEM
         return Keyboard.current.digit3Key.isPressed || Keyboard.current.numpad3Key.isPressed;
@@ -90,7 +104,7 @@ public class CesiumSamplesFlyToLocationHandler : MonoBehaviour
         return Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Keypad3);
 #endif
     }
-    static bool GetKey4Down()
+    public static bool GetKey4Down()
     {
 #if ENABLE_INPUT_SYSTEM
         return Keyboard.current.digit4Key.isPressed || Keyboard.current.numpad4Key.isPressed;
@@ -98,7 +112,7 @@ public class CesiumSamplesFlyToLocationHandler : MonoBehaviour
         return Input.GetKeyDown(KeyCode.Alpha4) || Input.GetKeyDown(KeyCode.Keypad4);
 #endif
     }
-    static bool GetKey5Down()
+    public static bool GetKey5Down()
     {
 #if ENABLE_INPUT_SYSTEM
         return Keyboard.current.digit5Key.isPressed || Keyboard.current.numpad5Key.isPressed;
@@ -107,7 +121,7 @@ public class CesiumSamplesFlyToLocationHandler : MonoBehaviour
 #endif
     }
 
-    static bool GetKey6Down()
+    public static bool GetKey6Down()
     {
 #if ENABLE_INPUT_SYSTEM
         return Keyboard.current.digit6Key.isPressed || Keyboard.current.numpad6Key.isPressed;
@@ -116,7 +130,7 @@ public class CesiumSamplesFlyToLocationHandler : MonoBehaviour
 #endif
     }
 
-    static bool GetKey7Down()
+    public static bool GetKey7Down()
     {
 #if ENABLE_INPUT_SYSTEM
         return Keyboard.current.digit7Key.isPressed || Keyboard.current.numpad7Key.isPressed;
@@ -124,7 +138,7 @@ public class CesiumSamplesFlyToLocationHandler : MonoBehaviour
         return Input.GetKeyDown(KeyCode.Alpha7) || Input.GetKeyDown(KeyCode.Keypad7);
 #endif
     }
-    static bool GetKey8Down()
+    public static bool GetKey8Down()
     {
 #if ENABLE_INPUT_SYSTEM
         return Keyboard.current.digit8Key.isPressed || Keyboard.current.numpad8Key.isPressed;
@@ -133,7 +147,7 @@ public class CesiumSamplesFlyToLocationHandler : MonoBehaviour
 #endif
     }
 
-    static int? GetKeyboardInput()
+    public static int? GetKeyboardInput()
     {
         if (GetKey1Down())
         {
@@ -180,7 +194,7 @@ public class CesiumSamplesFlyToLocationHandler : MonoBehaviour
 
     #endregion
 
-    void FlyToLocation(int index)
+    public void FlyToLocation(int index)
     {
         if (index >= this.locations.Count)
         {
