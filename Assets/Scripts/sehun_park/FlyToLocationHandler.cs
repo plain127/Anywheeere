@@ -7,7 +7,7 @@ using Unity.Mathematics;
 using UnityEngine.InputSystem;
 #endif
 
-public class CesiumSamplesFlyToLocationHandler : MonoBehaviour
+public class FlyToLocationHandler : MonoBehaviour
 {
     [Tooltip("The CesiumFlyToController that will take flight at runtime.")]
     public CesiumFlyToController flyToController;

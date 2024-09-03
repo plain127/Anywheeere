@@ -66,8 +66,8 @@ static class CesiumSamplesSceneManager
         GameObject[] gameObjects = scene.GetRootGameObjects();
         for (int i = 0; i < gameObjects.Length; i++)
         {
-            CesiumSamplesScene sampleScene =
-                gameObjects[i].GetComponent<CesiumSamplesScene>();
+            SamplesScene sampleScene =
+                gameObjects[i].GetComponent<SamplesScene>();
 
             if (sampleScene != null)
             {
@@ -80,7 +80,7 @@ static class CesiumSamplesSceneManager
 #endif
 
 [ExecuteInEditMode]
-class CesiumSamplesScene : MonoBehaviour
+class SamplesScene : MonoBehaviour
 {
     [Header("Default Scene View Settings")]
     [SerializeField]
