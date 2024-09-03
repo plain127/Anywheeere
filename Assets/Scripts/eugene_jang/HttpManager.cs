@@ -252,26 +252,40 @@ public class HttpManager : MonoBehaviour
 
     IEnumerator GetAudioRequest(string url)
     {
-        string jsonData = "{\"audio\":\"/result.wav\"}";
-        using (UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip("http://meta-ai.iptime.org:9000/docent", AudioType.WAV ))
+        // 보낼 json 데이터를 준비함
+        string jsonData = "{\"path\":\"./result.wav\"}";
+        // url로 요청을 보내고 받을 파일을 지정함? // Json으로 받는거 아닌가.. ?
+        using (UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip("http://meta-ai.iptime.org:9000/audio", AudioType.WAV ))
         {
             byte[] jsonByte = Encoding.UTF8.GetBytes(jsonData);
             www.uploadHandler = new UploadHandlerRaw(jsonByte);
             www.SetRequestHeader("Content-Type", "application/json");
-            www.downloadHandler = new DownloadHandlerBuffer();
+            // 요청이 가는 것 까지는 확인 Clear!
+
+            // 받는 것은 어케 하누.. ㅠ ?
+            //www.downloadHandler = new DownloadHandlerBuffer();
             yield return www.SendWebRequest();
+            
 
             if (www.result == UnityWebRequest.Result.Success)
             {
+                DownloadHandlerAudioClip downloadHandler = www.downloadHandler as DownloadHandlerAudioClip;
+                PlayAudioClip(downloadHandler.audioClip);
+                
+                print("여기까지 됨");
+
+                // 텍스트는 오지 않아... 기다리지 마...
+                //string responseText = downloadHandler.text;
                 //docentAudio = DownloadHandlerAudioClip.GetContent(www);
-                string responseText = www.downloadHandler.text;
 
                 if (docentAudio != null)
                 {
                     PlayAudioClip(docentAudio);
                 }
-                Debug.LogError(www.downloadHandler.text);
-                text_response.text = www.downloadHandler.text;
+
+                // 텍스트가 포함 되어 있지 않음
+                //Debug.LogError(www.downloadHandler.text);
+                //text_response.text = www.downloadHandler.text;
 
             }
             else
