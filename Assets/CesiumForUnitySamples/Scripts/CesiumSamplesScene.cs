@@ -66,8 +66,8 @@ static class CesiumSamplesSceneManager
         GameObject[] gameObjects = scene.GetRootGameObjects();
         for (int i = 0; i < gameObjects.Length; i++)
         {
-            SamplesScene sampleScene =
-                gameObjects[i].GetComponent<SamplesScene>();
+            CesiumSamplesScene sampleScene =
+                gameObjects[i].GetComponent<CesiumSamplesScene>();
 
             if (sampleScene != null)
             {
@@ -80,7 +80,7 @@ static class CesiumSamplesSceneManager
 #endif
 
 [ExecuteInEditMode]
-class SamplesScene : MonoBehaviour
+class CesiumSamplesScene : MonoBehaviour
 {
     [Header("Default Scene View Settings")]
     [SerializeField]
@@ -111,12 +111,12 @@ class SamplesScene : MonoBehaviour
 
     void OnEnable()
     {
-#if UNITY_EDITOR
+        #if UNITY_EDITOR
         if (!EditorApplication.isPlaying)
         {
             return;
         }
-#endif
+        #endif
 
         for (int i = 0; i < this._objectsToDisable.Count; i++)
         {
@@ -128,7 +128,7 @@ class SamplesScene : MonoBehaviour
 
         for (int i = 0; i < this._objectsToEnable.Count; i++)
         {
-            if (this._objectsToEnable[i] != null)
+            if(this._objectsToEnable[i] != null)
             {
                 this._objectsToEnable[i].SetActive(true);
             }
@@ -138,12 +138,12 @@ class SamplesScene : MonoBehaviour
 #if UNITY_EDITOR
     void Update()
     {
-#if ENABLE_INPUT_SYSTEM
+        #if ENABLE_INPUT_SYSTEM
         bool resetView =
             Keyboard.current.digit1Key.isPressed || Keyboard.current.numpad1Key.isPressed;
-#else
+        #else
         bool resetView = Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1);
-#endif
+        #endif
 
         if (resetView && EditorWindow.focusedWindow == SceneView.lastActiveSceneView)
         {
