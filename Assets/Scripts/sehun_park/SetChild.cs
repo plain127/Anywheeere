@@ -20,7 +20,7 @@ public class SetChild : MonoBehaviour
                 transform.SetParent(cameraObject.transform);
 
                 // 자식 오브젝트의 위치를 카메라 오브젝트의 위치에 상대적으로 맞추도록 설정합니다.
-                transform.localPosition = Vector3.zero;
+                transform.localPosition = new Vector3(0, 0, 6);
                 transform.localRotation = Quaternion.identity;
             }
             else
