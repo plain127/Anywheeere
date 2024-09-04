@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Mathematics;
 using UnityEngine.UI;
+using Photon.Pun;
 
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
 #endif
 
-public class CesiumSamplesFlyToLocationHandler : MonoBehaviour
+public class CesiumSamplesFlyToLocationHandler : MonoBehaviourPun
 {
     [Tooltip("The CesiumFlyToController that will take flight at runtime.")]
     public CesiumFlyToController flyToController;
@@ -52,12 +53,12 @@ public class CesiumSamplesFlyToLocationHandler : MonoBehaviour
 
     private void Start()
     {
-        // Initialize buttons with click listeners
-        for (int i = 0; i < locationButtons.Length; i++)
-        {
-            int index = i; // Local copy to avoid closure issues
-            locationButtons[i].onClick.AddListener(() => FlyToLocation(index));
-        }
+        //// Initialize buttons with click listeners
+        //for (int i = 0; i < locationButtons.Length; i++)
+        //{
+        //    int index = i; // Local copy to avoid closure issues
+        //    locationButtons[i].onClick.AddListener(() => FlyToLocation(index));
+        //}
     }
 
     void Update()
@@ -74,7 +75,7 @@ public class CesiumSamplesFlyToLocationHandler : MonoBehaviour
         }
 
         int index = (int)keyboardInput - 1;
-        this.FlyToLocation(index);
+        //this.FlyToLocation(index);
     }
 
     #region Inputs
@@ -196,6 +197,14 @@ public class CesiumSamplesFlyToLocationHandler : MonoBehaviour
 
     public void FlyToLocation(int index)
     {
+        photonView.RPC(nameof(SelectLocation), RpcTarget.All, index);
+    }
+
+    [PunRPC]
+    void SelectLocation(int index)
+    {
+        Debug.LogError(index);
+
         if (index >= this.locations.Count)
         {
             return;

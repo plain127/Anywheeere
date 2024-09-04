@@ -402,6 +402,8 @@ GameObject:
   - component: {fileID: 368861303}
   - component: {fileID: 368861302}
   - component: {fileID: 368861309}
+  - component: {fileID: 368861311}
+  - component: {fileID: 368861310}
   m_Layer: 0
   m_Name: DynamicCamera
   m_TagString: MainCamera
@@ -517,7 +519,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _flyToDuration: 15
+  _flyToDuration: 7
 --- !u!114 &368861303
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -775,6 +777,45 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabToAttach: {fileID: 882553314410954746, guid: 96ce285550192324197a129c19e4ec67,
     type: 3}
+--- !u!114 &368861310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 368861300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: 368861311}
+  sceneViewId: 3
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &368861311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 368861300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 0
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1 &400835238
 GameObject:
   m_ObjectHideFlags: 0
@@ -1249,9 +1290,9 @@ MonoBehaviour:
   - x: -0.12324192
     y: 51.50156876
     z: 114.0421
-  - x: -122.39423768
-    y: 37.79981868
-    z: 389.2983
+  - x: -115.1634
+    y: 36.12253
+    z: 693.204
   - x: -115.17339406
     y: 36.12352381
     z: 735.0835
@@ -1262,17 +1303,17 @@ MonoBehaviour:
   - {x: -120, y: 15}
   - {x: 70, y: 10}
   - {x: -120, y: 10}
-  - {x: -160, y: 25}
+  - {x: 130, y: 25}
   - {x: 150, y: 20}
   locationButtons:
   - {fileID: 1609018243}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1250527283}
+  - {fileID: 1352182897}
+  - {fileID: 1822603686}
+  - {fileID: 794435612}
+  - {fileID: 1979330868}
+  - {fileID: 840911156}
+  - {fileID: 414675722}
 --- !u!114 &666272559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2821,6 +2862,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17ea0b964c26a264f91d3992c34d55b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  var: {x: 0, y: 0, z: 6}
 --- !u!4 &1529472596
 Transform:
   m_ObjectHideFlags: 0
@@ -2983,11 +3025,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 980502290173848799, guid: 7ab9d8aececb8af4c87c77cdb6384bd7,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2762980912756827776, guid: 7ab9d8aececb8af4c87c77cdb6384bd7,
         type: 3}
       propertyPath: sceneViewId
@@ -3006,7 +3043,7 @@ PrefabInstance:
     - target: {fileID: 9098348072640476505, guid: 7ab9d8aececb8af4c87c77cdb6384bd7,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4.25
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9098348072640476505, guid: 7ab9d8aececb8af4c87c77cdb6384bd7,
         type: 3}
