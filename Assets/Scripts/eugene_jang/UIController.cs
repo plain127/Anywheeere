@@ -25,30 +25,21 @@ public class UIController : MonoBehaviour
 
     void Update()
     {
-        //    if (Input.GetKeyUp(KeyCode.Alpha1))
-        //    {
-        //        CesiumMap.GetComponent<CesiumSamplesFlyToLocationHandler>().FlyToLocation(0);
-        //    }
-        //    if (Input.GetKeyUp(KeyCode.Alpha2))
-        //    {
-        //        CesiumMap.GetComponent<CesiumSamplesFlyToLocationHandler>().FlyToLocation(1);
-        //    }
-        //    if (Input.GetKeyUp(KeyCode.Alpha3))
-        //    {
-        //        CesiumMap.GetComponent<CesiumSamplesFlyToLocationHandler>().FlyToLocation(2);
-        //    }
-        //    if (Input.GetKeyUp(KeyCode.Alpha4))
-        //    {
-        //        CesiumMap.GetComponent<CesiumSamplesFlyToLocationHandler>().FlyToLocation(3);
-        //    }
-        //    if (Input.GetKeyUp(KeyCode.Alpha5))
-        //    {
-        //        CesiumMap.GetComponent<CesiumSamplesFlyToLocationHandler>().FlyToLocation(4);
-        //    }
-        //    if (Input.GetKeyUp(KeyCode.Alpha6))
-        //    {
-        //        CesiumMap.GetComponent<CesiumSamplesFlyToLocationHandler>().FlyToLocation(5);
-        //    }
+        if (Input.GetKeyUp(KeyCode.Alpha1))
+        {
+            print("NYC");
+            //CesiumMap.GetComponent<CesiumSamplesFlyToLocationHandler>().FlyToLocation(8);
+        }
+        if (Input.GetKeyUp(KeyCode.Alpha2))
+        {
+            print("Rome");
+            //CesiumMap.GetComponent<CesiumSamplesFlyToLocationHandler>().FlyToLocation(9);
+        }
+        if (Input.GetKeyUp(KeyCode.Alpha3))
+        {
+            print("Paris");
+            //CesiumMap.GetComponent<CesiumSamplesFlyToLocationHandler>().FlyToLocation(10);
+        }
 
     }
 }
