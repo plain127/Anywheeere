@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
+using ExitGames.Client.Photon;
 
 public class SimpleConnectionMgr : MonoBehaviourPunCallbacks
 {
@@ -65,6 +66,27 @@ public class SimpleConnectionMgr : MonoBehaviourPunCallbacks
     {
         base.OnCreatedRoom();
         print("방 생성 완료");
+
+        // 방을 생성한 사람은 마스터 역할을 부여받는다
+        if (PhotonNetwork.IsMasterClient)
+        {
+            print("이 플레이어는 마스터 클라이언트입니다.");
+        }
+        else
+        {
+            print("이 플레이어는 마스터 클라이언트가 아닙니다.");
+        }
+
+        var properties = new ExitGames.Client.Photon.Hashtable
+        {
+            { "MasterClient", PhotonNetwork.LocalPlayer.ActorNumber }
+        };
+        PhotonNetwork.CurrentRoom.SetCustomProperties(properties);
+
+        PhotonNetwork.LocalPlayer.SetCustomProperties(new ExitGames.Client.Photon.Hashtable
+        {
+            { "isMaster", true }
+        });
     }
 
     // 방 입장 성공했을 때 호출되는 함수
@@ -72,6 +94,35 @@ public class SimpleConnectionMgr : MonoBehaviourPunCallbacks
     {
         base.OnJoinedRoom();
         print("방 입장 완료");
+
+        if (PhotonNetwork.CurrentRoom.CustomProperties.TryGetValue("MasterClient", out object masterClient))
+        {
+            int masterClientActorNumber = (int)masterClient;
+            bool isMaster = PhotonNetwork.LocalPlayer.ActorNumber == masterClientActorNumber;
+
+            // 추가적으로 플레이어의 CustomProperties에서 isMaster 확인
+            if (PhotonNetwork.LocalPlayer.CustomProperties.TryGetValue("isMaster", out object isMasterProp))
+            {
+                isMaster = (bool)isMasterProp;
+            }
+            else
+            {
+                isMaster = false; // 기본적으로 마스터가 아님
+            }
+
+            if (isMaster)
+            {
+                print("이 플레이어는 마스터입니다.");
+            }
+            else
+            {
+                print("이 플레이어는 마스터가 아닙니다.");
+            }
+        }
+        else
+        {
+            print("마스터 클라이언트 정보가 없습니다.");
+        }
 
         // 멀티플레이 컨텐츠 즐길 수 있는 상태
         // GameScene으로 이동
