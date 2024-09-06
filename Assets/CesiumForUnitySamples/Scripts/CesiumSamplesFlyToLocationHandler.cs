@@ -34,7 +34,7 @@ public class CesiumSamplesFlyToLocationHandler : MonoBehaviourPun
     [Tooltip("Buttons to trigger the fly-to locations.")]
     public Button[] locationButtons;
 
-    const int locationLimit = 8;
+    const int locationLimit = 11;
 
     private void OnValidate()
     {

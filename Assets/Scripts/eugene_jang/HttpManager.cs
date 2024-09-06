@@ -19,6 +19,7 @@ public class HttpManager : MonoBehaviour
     public Toggle freeUser;
     public AudioClip docentAudio;
 
+    private string apiUrl = "http://39.121.152.94:3000/api/data";
     public void Get()
     {
         StartCoroutine(GetRequest(url));
@@ -197,7 +198,7 @@ public class HttpManager : MonoBehaviour
     }
     IEnumerator PostPointJsonRequest(string url)
     {
-        string jsonData = "{\"text\":\"안녕하세요\"}";       
+        string jsonData = "{\"text\":\"자유의여신상\"}";       
         using(UnityWebRequest www = UnityWebRequest.Get("http://meta-ai.iptime.org:9000/docent"))
         {
             byte [] jsonByte = Encoding.UTF8.GetBytes(jsonData);
@@ -304,6 +305,28 @@ public class HttpManager : MonoBehaviour
 
     }
 
+
+    public void GetNodeAPI()
+    {
+        StartCoroutine(GetData());
+    }
+
+    IEnumerator GetData()
+    {
+        UnityWebRequest request = UnityWebRequest.Get(apiUrl);
+        yield return request.SendWebRequest();
+
+        if(request.result == UnityWebRequest.Result.Success)
+        {
+            string jsonResponse = request.downloadHandler.text;
+            Debug.Log("API 응답: "+ jsonResponse);
+            text_response.text = jsonResponse;
+        }
+        else
+        {
+            Debug.LogError("API 요청 실패: " + request.error);
+        }
+    }
 
 }
 
