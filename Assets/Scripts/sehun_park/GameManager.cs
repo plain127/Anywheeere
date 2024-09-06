@@ -5,9 +5,12 @@ using Photon.Pun;
 
 public class GameManager : MonoBehaviour
 {
+
+    public Vector3 var;
+
     void Start()
     {
-        PhotonNetwork.Instantiate("Player", Vector3.zero, Quaternion.identity);
+        PhotonNetwork.Instantiate("Player", var, Quaternion.identity);
     }
 
     void Update()
