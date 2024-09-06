@@ -198,7 +198,7 @@ public class HttpManager : MonoBehaviour
     }
     IEnumerator PostPointJsonRequest(string url)
     {
-        string jsonData = "{\"text\":\"안녕하세요\"}";       
+        string jsonData = "{\"text\":\"자유의여신상\"}";       
         using(UnityWebRequest www = UnityWebRequest.Get("http://meta-ai.iptime.org:9000/docent"))
         {
             byte [] jsonByte = Encoding.UTF8.GetBytes(jsonData);
