@@ -238,6 +238,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CesiumMap: {fileID: 666272555}
+  skyboxManager: {fileID: 701472546}
   url: http://meta-ai.iptime.org:9000/docent
   docent: 
   audioAddress: 
@@ -577,14 +578,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -0.313
       objectReference: {fileID: 0}
+    - target: {fileID: 7752603227654311270, guid: d1f6fb4b452d026489986bf620a2d8bc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7752603225714643757, guid: d1f6fb4b452d026489986bf620a2d8bc,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d1f6fb4b452d026489986bf620a2d8bc, type: 3}
 --- !u!1 &171490635
 GameObject:
@@ -1243,7 +1245,7 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 368861311}
-  sceneViewId: 3
+  sceneViewId: 7
   InstantiationId: 0
   isRuntimeInstantiated: 0
 --- !u!114 &368861311
@@ -1993,7 +1995,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents: []
-  sceneViewId: 1
+  sceneViewId: 6
   InstantiationId: 0
   isRuntimeInstantiated: 0
 --- !u!1 &684286339
@@ -2117,6 +2119,60 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &701472545
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 701472547}
+  - component: {fileID: 701472546}
+  m_Layer: 0
+  m_Name: SkyboxManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &701472546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 701472545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 898328fac60d4df44a0ad5759e63b560, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CesiumMap: {fileID: 666272555}
+  skyboxMaterials:
+  - {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 7b1129d20f7f54c4ca615fba7387b631, type: 2}
+  - {fileID: 2100000, guid: 07a03c3ff2563c047ad77ca9e72cf337, type: 2}
+  - {fileID: 2100000, guid: 2b67d61d7f954594caa78e325503b557, type: 2}
+  defaultSkyboxIndex: 0
+  currentSkyboxIndex: 0
+  cesiumWorldTerrain: {fileID: 0}
+  googlePhotorealistic3DTiles: {fileID: 1591125489}
+--- !u!4 &701472547
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 701472545}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -225.07565, y: 46.18144, z: 25.38519}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &784077650
 GameObject:
   m_ObjectHideFlags: 0
@@ -2718,7 +2774,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &888659746
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4692,7 +4748,7 @@ PrefabInstance:
     - target: {fileID: 2762980912756827776, guid: 7ab9d8aececb8af4c87c77cdb6384bd7,
         type: 3}
       propertyPath: sceneViewId
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 9098348072640476505, guid: 7ab9d8aececb8af4c87c77cdb6384bd7,
         type: 3}
@@ -5649,6 +5705,7 @@ SceneRoots:
   - {fileID: 136900332}
   - {fileID: 28615890}
   - {fileID: 1529472596}
+  - {fileID: 701472547}
   - {fileID: 1571457854}
   - {fileID: 1295683136}
   - {fileID: 888659749}

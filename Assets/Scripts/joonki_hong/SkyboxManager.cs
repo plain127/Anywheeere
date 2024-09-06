@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class SkyboxManager : MonoBehaviour
 {
+    public GameObject CesiumMap;
+
     // Skybox Material 배열로 여러 Skybox를 관리할 수 있음
     public Material[] skyboxMaterials;
 
@@ -9,7 +11,7 @@ public class SkyboxManager : MonoBehaviour
     public int defaultSkyboxIndex = 0;
 
     // 현재 Skybox index
-    private int currentSkyboxIndex;
+    public int currentSkyboxIndex;
 
     // 활성화/비활성화할 게임 오브젝트들
     public GameObject cesiumWorldTerrain;
@@ -23,17 +25,24 @@ public class SkyboxManager : MonoBehaviour
 
     void Update()
     {
-        // 'i' 버튼을 누르면 이전 Skybox로 변경
-        if (Input.GetKeyDown(KeyCode.I))
+        if (Input.GetKeyUp(KeyCode.Alpha3))
         {
-            PreviousSkybox();
+            print("Immersive_Statue of Liberty");
+            SetSkybox(1);
         }
 
-        // 'o' 버튼을 누르면 다음 Skybox로 변경
-        if (Input.GetKeyDown(KeyCode.O))
+        if (Input.GetKeyUp(KeyCode.Alpha6))
         {
-            NextSkybox();
+            print("Immersive_Colosseum");
+            SetSkybox(2);
         }
+
+        if (Input.GetKeyUp(KeyCode.Alpha9))
+        {
+            print("Immersive_Eiffel Tower");
+            SetSkybox(3);
+        }
+
     }
 
     // Skybox를 변경하는 함수
@@ -62,21 +71,21 @@ public class SkyboxManager : MonoBehaviour
     }
 
     // Skybox를 순환시키는 함수
-    public void NextSkybox()
-    {
-        currentSkyboxIndex = (currentSkyboxIndex + 1) % skyboxMaterials.Length;
-        SetSkybox(currentSkyboxIndex);
-    }
+    //public void NextSkybox()
+    //{
+    //    currentSkyboxIndex = (currentSkyboxIndex + 1) % skyboxMaterials.Length;
+    //    SetSkybox(currentSkyboxIndex);
+    //}
 
-    // Skybox를 이전 것으로 되돌리는 함수
-    public void PreviousSkybox()
-    {
-        currentSkyboxIndex = (currentSkyboxIndex - 1 + skyboxMaterials.Length) % skyboxMaterials.Length;
-        SetSkybox(currentSkyboxIndex);
-    }
+    //// Skybox를 이전 것으로 되돌리는 함수
+    //public void PreviousSkybox()
+    //{
+    //    currentSkyboxIndex = (currentSkyboxIndex - 1 + skyboxMaterials.Length) % skyboxMaterials.Length;
+    //    SetSkybox(currentSkyboxIndex);
+    //}
 
     // 게임 오브젝트들을 활성화하는 함수
-    private void ActivateObjects()
+    public void ActivateObjects()
     {
         if (cesiumWorldTerrain != null)
         {
@@ -92,7 +101,7 @@ public class SkyboxManager : MonoBehaviour
     }
 
     // 게임 오브젝트들을 비활성화하는 함수
-    private void DeactivateObjects()
+    public void DeactivateObjects()
     {
         if (cesiumWorldTerrain != null)
         {

@@ -18,6 +18,7 @@ enum PlayStates
 public class UIController : MonoBehaviour
 {
     public GameObject CesiumMap;
+    public SkyboxManager skyboxManager;
 
     public string url;
     // 선택된 도시로 이동한다.
@@ -42,37 +43,84 @@ public class UIController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Alpha5))
+        if (Input.GetKeyUp(KeyCode.Alpha1))
         {
+            if (skyboxManager != null)
+            {
+                skyboxManager.SetSkybox(0); // Call SetSkybox from SkyboxManager
+            }
+
             print("NYC");
-            CesiumMap.GetComponent<CesiumSamplesFlyToLocationHandler>().FlyToLocation(5);
+            CesiumMap.GetComponent<CesiumSamplesFlyToLocationHandler>().FlyToLocation(1);
             // 뉴욕으로 이동 할 꺼임 
             jsonData = "{\"text\":\"자유의여신상\"}";
             GetDocent();
             
             docentText.text = "자유의 여신상 도슨트 블라라";
-             
-
-
         }
-        if (Input.GetKeyUp(KeyCode.Alpha6))
+        
+        if (Input.GetKeyUp(KeyCode.Alpha2))
         {
+            if (skyboxManager != null)
+            {
+                skyboxManager.SetSkybox(0); // Call SetSkybox from SkyboxManager
+            }
+
+            print("Statue of Liberty");
+            CesiumMap.GetComponent<CesiumSamplesFlyToLocationHandler>().FlyToLocation(2);
+        }
+
+        if (Input.GetKeyUp(KeyCode.Alpha4))
+        {
+            if (skyboxManager != null)
+            {
+                skyboxManager.SetSkybox(0); // Call SetSkybox from SkyboxManager
+            }
+
             print("Rome");
-            CesiumMap.GetComponent<CesiumSamplesFlyToLocationHandler>().FlyToLocation(6);
+            CesiumMap.GetComponent<CesiumSamplesFlyToLocationHandler>().FlyToLocation(4);
             jsonData = "{\"text\":\"콜로세움\"}";
             GetDocent();
 
             docentText.text = "콜로세움 도슨트 블라라";
         }
 
+        if (Input.GetKeyUp(KeyCode.Alpha5))
+        {
+            if (skyboxManager != null)
+            {
+                skyboxManager.SetSkybox(0); // Call SetSkybox from SkyboxManager
+            }
+
+            print("Colosseum");
+            CesiumMap.GetComponent<CesiumSamplesFlyToLocationHandler>().FlyToLocation(5);
+        }
+
         if (Input.GetKeyUp(KeyCode.Alpha7))
         {
+            if (skyboxManager != null)
+            {
+                skyboxManager.SetSkybox(0); // Call SetSkybox from SkyboxManager
+            }
+
+
             print("Paris");
             CesiumMap.GetComponent<CesiumSamplesFlyToLocationHandler>().FlyToLocation(7);
             jsonData = "{\"text\":\"에펠탑\"}";
             GetDocent();
 
             docentText.text = "에펠탑 도슨트 블라라";
+        }
+
+        if (Input.GetKeyUp(KeyCode.Alpha8))
+        {
+            if (skyboxManager != null)
+            {
+                skyboxManager.SetSkybox(0); // Call SetSkybox from SkyboxManager
+            }
+
+            print("Eiffel Tower");
+            CesiumMap.GetComponent<CesiumSamplesFlyToLocationHandler>().FlyToLocation(8);
         }
 
         if (Input.GetKeyUp(KeyCode.V))
