@@ -42,10 +42,10 @@ public class UIController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Alpha1))
+        if (Input.GetKeyUp(KeyCode.Alpha5))
         {
             print("NYC");
-            //CesiumMap.GetComponent<CesiumSamplesFlyToLocationHandler>().FlyToLocation(8);
+            CesiumMap.GetComponent<CesiumSamplesFlyToLocationHandler>().FlyToLocation(5);
             // 뉴욕으로 이동 할 꺼임 
             jsonData = "{\"text\":\"자유의여신상\"}";
             GetDocent();
@@ -55,20 +55,20 @@ public class UIController : MonoBehaviour
 
 
         }
-        if (Input.GetKeyUp(KeyCode.Alpha2))
+        if (Input.GetKeyUp(KeyCode.Alpha6))
         {
             print("Rome");
-            //CesiumMap.GetComponent<CesiumSamplesFlyToLocationHandler>().FlyToLocation(9);
+            CesiumMap.GetComponent<CesiumSamplesFlyToLocationHandler>().FlyToLocation(6);
             jsonData = "{\"text\":\"콜로세움\"}";
             GetDocent();
 
             docentText.text = "콜로세움 도슨트 블라라";
         }
 
-        if (Input.GetKeyUp(KeyCode.Alpha3))
+        if (Input.GetKeyUp(KeyCode.Alpha7))
         {
             print("Paris");
-            //CesiumMap.GetComponent<CesiumSamplesFlyToLocationHandler>().FlyToLocation(10);
+            CesiumMap.GetComponent<CesiumSamplesFlyToLocationHandler>().FlyToLocation(7);
             jsonData = "{\"text\":\"에펠탑\"}";
             GetDocent();
 
