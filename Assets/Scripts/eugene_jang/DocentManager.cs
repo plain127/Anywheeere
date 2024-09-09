@@ -1,4 +1,5 @@
 using JetBrains.Annotations;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
@@ -19,6 +20,14 @@ public class DocentManager : MonoBehaviour
 
     // 도슨트를 실행하면 저장되어 있던 text는 UI 형태로 표시한다.
     // audio는 AudioClip 으로 실행 한다.
+
+    // 응답 받은 json 데이터를 이용 하기 위한 class 
+    [Serializable]
+    public class DocentResponse
+    {
+        public string docent;
+        public string audio;
+    }
 
 
     void Start()
@@ -47,16 +56,25 @@ public class DocentManager : MonoBehaviour
             www.SetRequestHeader("Content-Type", "application/json");
             yield return www.SendWebRequest();
 
-            docent = www.downloadHandler.text;
-            //받아온 텍스트(json형태 임) 도슨트 부분은 string 변수에 저장 해 둠
+            // 받아온 text를 json 에서 DocentResponse class 로 변경
+            DocentResponse responseData = JsonUtility.FromJson<DocentResponse>(www.downloadHandler.text);
 
             // 받아온 json에서 docent 부분과 audio 주소 부분을 분리해 둬야 함
+            print(responseData.docent);
+            print(responseData.audio);
+            docent = responseData.docent;
+            audioAddress = responseData.audio;
+
+            // 알파 때.. 받으면 할 것 덜
+            
             // 오디오 도슨트 받는 함수 실행
-            // docentAudio에 받아온 AudioClip 저장 
+            // docentAudio에 받아온 AudioClip 저장
+            
         }
     }
 
     // docent audio 를 받아서 AudioClip에 저장 하는 함수
+    // 알파때 조질 예정
     IEnumerator GetDecentAudioFromAI(string url)
     {
         string jsonData = "{\"path\":\"./result.wav\"}";

@@ -5,6 +5,7 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
+using static DocentManager;
 
 
 [Serializable]
@@ -154,7 +155,9 @@ public class UIController : MonoBehaviour
             www.SetRequestHeader("Content-Type", "application/json");
             yield return www.SendWebRequest();
 
-            docentText.text = www.downloadHandler.text;
+            DocentResponse responseData = JsonUtility.FromJson<DocentResponse>(www.downloadHandler.text);
+
+            docentText.text = responseData.docent;
             //받아온 텍스트(json형태 임) 도슨트 부분은 string 변수에 저장 해 둠
 
             // 받아온 json에서 docent 부분과 audio 주소 부분을 분리해 둬야 함
