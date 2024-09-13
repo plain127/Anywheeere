@@ -10,7 +10,7 @@ public class Game2Manager : MonoBehaviour
 
     void Start()
     {
-        PhotonNetwork.Instantiate("Player2", var, Quaternion.identity);
+        PhotonNetwork.Instantiate("Player3", var, Quaternion.identity);
     }
 
     void Update()
