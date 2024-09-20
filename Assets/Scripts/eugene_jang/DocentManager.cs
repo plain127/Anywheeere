@@ -69,6 +69,9 @@ public class DocentManager : MonoBehaviour
             
             // 오디오 도슨트 받는 함수 실행
             // docentAudio에 받아온 AudioClip 저장
+
+            // 미리 받아놓은 오디오의 재생
+            // 전체 플로우 관리는 어디서 하는가.. ?
             
         }
     }
