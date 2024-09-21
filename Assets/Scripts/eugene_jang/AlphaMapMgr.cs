@@ -18,8 +18,13 @@ public class AlphaMapMgr : MonoBehaviour
 
     public GameObject NYCPanel;
     public GameObject SFPanel;
-    public GameObject LVCPanel;
+    public GameObject LVPanel;
 
+    public GameObject RomePanel;
+    public GameObject VenicePanel;
+
+    public GameObject TokyoPanel;
+    public GameObject KyotoPanel;
 
 
     void Start()
@@ -31,6 +36,7 @@ public class AlphaMapMgr : MonoBehaviour
     {
        
     }
+    
     private void OnDisable()
     {
         CountryPanel.SetActive(true);
@@ -39,22 +45,27 @@ public class AlphaMapMgr : MonoBehaviour
         JapanPanel.SetActive(false);
         NYCPanel.SetActive(false);
         SFPanel.SetActive(false);
-        LVCPanel.SetActive(false);
+        LVPanel.SetActive(false);
+        RomePanel.SetActive(false);
+        VenicePanel.SetActive(false);
+        TokyoPanel.SetActive(false);
+        KyotoPanel.SetActive(false);
     }
-    public void CountryBtnOnClick(string str)
+    public void CountryBtnOnClick(string country)
     {
-        print(str);
-        if(str == "USA")
+        print(country);
+        // country 로 이동
+        // country 의 docent audio 받아오기 
+
+        CountryPanel.SetActive(false);
+        if(country == "USA")
         {
-            CountryPanel.SetActive(false);
             USAPanel.SetActive(true);
-        }else if (str == "Italy")
+        }else if (country == "Italy")
         {
-            CountryPanel.SetActive(false);
             ItalyPanel.SetActive(true);
-        }else if (str == "Japan")
+        }else if (country == "Japan")
         {
-            CountryPanel.SetActive(false);
             JapanPanel.SetActive(true);
         }
     }
@@ -62,15 +73,43 @@ public class AlphaMapMgr : MonoBehaviour
     public void SelectCity(string city)
     {
         print(city);
+        // city 로 이동
+        // city 의 docent audio 받아오기 
         if(city == "NewYork") 
         { 
             NYCPanel.SetActive(true); 
-            USAPanel.SetActive(false);
+        } else if(city == "San Francisco")
+        {
+            SFPanel.SetActive(true);
+        } else if (city == "Las Vegas")
+        {
+            LVPanel.SetActive(true);
         }
+        USAPanel.SetActive(false);
+
+        if (city == "Rome")
+        {
+            RomePanel.SetActive(true);
+        }else if (city == "Venice")
+        {
+            VenicePanel.SetActive(true);
+        }
+        ItalyPanel.SetActive(false);
+
+        if (city == "Tokyo")
+        {
+            TokyoPanel.SetActive(true);
+        }else if(city == "Kyoto")
+        {
+            KyotoPanel.SetActive(true);
+        }
+        JapanPanel.SetActive(false);
     }
 
     public void SelectMonument(string monument)
     {
         print(monument);
+        // monument 로 이동
+        // monument 의 docent 받아오기 + Audio 재생
     }
 }
