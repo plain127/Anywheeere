@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
@@ -195,7 +194,7 @@ public class UIController : MonoBehaviour
             else if (!mapUI.activeInHierarchy)
             {
                 mapUI.SetActive(true);
-                ShowCountryPanel();
+                //ShowCountryPanel();
             }
 
         }
