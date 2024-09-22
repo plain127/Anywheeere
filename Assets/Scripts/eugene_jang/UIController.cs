@@ -104,9 +104,10 @@ public class UIController : MonoBehaviour
             CesiumMap.GetComponent<CesiumSamplesFlyToLocationHandler>().FlyToLocation(1);
             // 뉴욕으로 이동 할 꺼임 
             jsonData = "{\"text\":\"자유의여신상\"}";
+
             GetDocent();
             
-            docentText.text = "자유의 여신상 도슨트 블라라";
+            //docentText.text = "자유의 여신상 도슨트 블라라";
         }
         
         if (Input.GetKeyUp(KeyCode.Alpha2))
@@ -317,7 +318,7 @@ public class UIController : MonoBehaviour
     // 이동하는 도시 정보를 전달하고 docent 텍스트와 audio 주소를 받아 옴
     IEnumerator GetDocentFromAI(string url, string jsonData)
     {   
-        using (UnityWebRequest www = UnityWebRequest.Get(url))
+        using (UnityWebRequest www = UnityWebRequest.Get(url+"docent"))
         {
             byte[] jsonByte = Encoding.UTF8.GetBytes(jsonData);
             www.uploadHandler = new UploadHandlerRaw(jsonByte);
@@ -326,6 +327,7 @@ public class UIController : MonoBehaviour
 
             DocentResponse responseData = JsonUtility.FromJson<DocentResponse>(www.downloadHandler.text);
 
+            print(responseData.audio);
             docentText.text = responseData.docent;
             //받아온 텍스트(json형태 임) 도슨트 부분은 string 변수에 저장 해 둠
 
@@ -338,7 +340,7 @@ public class UIController : MonoBehaviour
     // docent audio 를 받아서 AudioClip에 저장 하는 함수
     IEnumerator GetDecentAudioFromAI(string url)
     {
-        jsonData = "{\"path\":\"./result.wav\"}";
+        jsonData = "{\"path\":\"./output.wav\"}";
         using (UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip(url, AudioType.WAV))
         {
             byte[] jsonByte = Encoding.UTF8.GetBytes(jsonData);

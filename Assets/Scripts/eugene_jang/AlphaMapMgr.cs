@@ -1,10 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.UI;
 
 public class AlphaMapMgr : MonoBehaviour
 {
+    public string url;
+
+    public AudioSource audioSource; 
+
     public GameObject MapPanel;
 
     public Button btn_USA;
@@ -34,11 +41,20 @@ public class AlphaMapMgr : MonoBehaviour
 
     void Update()
     {
-       
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            print("눌렸어요!");
+            TestAudioFromAI();
+        }
     }
     
     private void OnDisable()
     {
+        if(audioSource != null)
+        {
+            Destroy(audioSource);
+            print("잘 자요");
+        }
         CountryPanel.SetActive(true);
         USAPanel.SetActive(false);
         ItalyPanel.SetActive(false);
@@ -50,6 +66,7 @@ public class AlphaMapMgr : MonoBehaviour
         VenicePanel.SetActive(false);
         TokyoPanel.SetActive(false);
         KyotoPanel.SetActive(false);
+
     }
     public void CountryBtnOnClick(string country)
     {
@@ -111,5 +128,36 @@ public class AlphaMapMgr : MonoBehaviour
         print(monument);
         // monument 로 이동
         // monument 의 docent 받아오기 + Audio 재생
+    }
+
+    //오디오 테스트 함수
+    public void TestAudioFromAI()
+    {
+        StartCoroutine(TestAudioRequest());
+    }
+
+    IEnumerator TestAudioRequest()
+    {
+        string jsonData = "{\"path\":\"./output.wav\"}";
+        using (UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip("http://metaai.iptime.org:9000/audio", AudioType.WAV))
+        {
+            byte[] jsonByte = Encoding.UTF8.GetBytes(jsonData);
+            www.uploadHandler = new UploadHandlerRaw(jsonByte);
+            www.SetRequestHeader("Content-Type", "application/json");
+
+            yield return www.SendWebRequest();
+
+            if ( www.result == UnityWebRequest.Result.Success)
+            {
+                DownloadHandlerAudioClip downloadHandler = www.downloadHandler as DownloadHandlerAudioClip;
+                PlayAudioClip(downloadHandler.audioClip);
+            }
+        }
+    }
+    void PlayAudioClip(AudioClip clip)
+    {
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.clip = clip;
+        audioSource.Play();
     }
 }

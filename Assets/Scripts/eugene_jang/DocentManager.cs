@@ -1,4 +1,3 @@
-using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -49,7 +48,7 @@ public class DocentManager : MonoBehaviour
     IEnumerator GetDocentFromAI(string url)
     {
         string jsonData = "{\"text\":\"자유의여신상\"}";
-        using (UnityWebRequest www = UnityWebRequest.Get(url))
+        using (UnityWebRequest www = UnityWebRequest.Get(url + "docent"))
         {
             byte[] jsonByte = Encoding.UTF8.GetBytes(jsonData);
             www.uploadHandler = new UploadHandlerRaw(jsonByte);
@@ -66,13 +65,13 @@ public class DocentManager : MonoBehaviour
             audioAddress = responseData.audio;
 
             // 알파 때.. 받으면 할 것 덜
-            
+
             // 오디오 도슨트 받는 함수 실행
             // docentAudio에 받아온 AudioClip 저장
 
             // 미리 받아놓은 오디오의 재생
             // 전체 플로우 관리는 어디서 하는가.. ?
-            
+            StartCoroutine(GetDecentAudioFromAI(url + "audio"));
         }
     }
 
@@ -80,9 +79,10 @@ public class DocentManager : MonoBehaviour
     // 알파때 조질 예정
     IEnumerator GetDecentAudioFromAI(string url)
     {
-        string jsonData = "{\"path\":\"./result.wav\"}";
+        string jsonData = "{\"path\":\"./output.wav\"}";
         using(UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip(url, AudioType.WAV))
         {
+            print("audio 함수 실행");
             byte[] jsonByte = Encoding.UTF8.GetBytes(jsonData);
             www.uploadHandler = new UploadHandlerRaw(jsonByte);
             www.SetRequestHeader("Content-Type", "application/json");
@@ -91,7 +91,9 @@ public class DocentManager : MonoBehaviour
 
             DownloadHandlerAudioClip downloadHandler = www.downloadHandler as DownloadHandlerAudioClip;
             docentAudio = downloadHandler.audioClip;
-
+            AudioSource audioSource = gameObject.GetComponent<AudioSource>();
+            audioSource.clip = docentAudio;
+            audioSource.Play();
             // docentAudio를 실행 해야 할 때 실행 한다.(어디에 넣어 놓을까~?)
         }
 
