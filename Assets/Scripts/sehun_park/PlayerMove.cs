@@ -43,6 +43,12 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
     // 닉네임 UI
     public TMP_Text nickName;
 
+    [PunRPC]
+    void RpcAddPlayer(int order)
+    {
+        // GameManger 에게 photonView 를 넘겨주자
+        Game2Manager.instance.AddPlayer(photonView, order);
+    }
 
     void Start()
     {
@@ -50,6 +56,9 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
         {
             // 마우스 잠그자.
             Cursor.lockState = CursorLockMode.Locked;
+
+            // 내가 방에 들어온 순서를 모두에게 알려주자.
+            photonView.RPC(nameof(RpcAddPlayer), RpcTarget.AllBuffered, ProjectMgr.Get().orderInRoom);
 
         }
 

@@ -30,7 +30,7 @@ public class SimpleConnectionMgr2 : MonoBehaviourPunCallbacks
     public void JoinLobby()
     {
         // 닉네임 설정
-        PhotonNetwork.NickName = "박세훈";
+        PhotonNetwork.NickName = "Test";
         // 기본 Lobby 입장
         PhotonNetwork.JoinLobby();
     }

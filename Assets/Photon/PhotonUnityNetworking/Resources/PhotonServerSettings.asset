@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PhotonServerSettings
   m_EditorClassIdentifier: 
   AppSettings:
-    AppIdRealtime: 4b8ab221-5547-44f0-bbe2-3c83e70afffa
+    AppIdRealtime: 69087daa-beec-447c-824d-eaa0c709d511
     AppIdFusion: 
     AppIdChat: 
     AppIdVoice: 
@@ -42,6 +42,16 @@ MonoBehaviour:
   - ApplyTexture
   - SelectLocation
   - UpdatePlayerPosition
+  - AddChat
+  - CreateBullet
+  - CreateCube
+  - CreateImpact
+  - CreatExplo
+  - RpcAddPlayer
+  - RpcChangeTurn
+  - RpcSetReady
+  - RpcUpdateHP
+  - SetTrigger
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0
