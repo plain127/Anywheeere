@@ -25,7 +25,7 @@ public class SkyboxManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Alpha3))
+        if (Input.GetKeyUp(KeyCode.Alpha1))
         {
             print("Immersive_Statue of Liberty");
             SetSkybox(1);
