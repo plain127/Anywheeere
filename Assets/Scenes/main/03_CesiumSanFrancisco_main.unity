@@ -493,12 +493,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _ellipsoidOverride: {fileID: 0}
   _originAuthority: 0
-  _latitude: 37.79514641597104
-  _longitude: -122.39387693298949
-  _height: -28.40501702727627
-  _ecefX: -2703526.7808775855
-  _ecefY: -4261083.010513388
-  _ecefZ: 3887484.0774455746
+  _latitude: 37.80715
+  _longitude: -122.423
+  _height: -33.099998474121094
+  _ecefX: -2705252.49024551
+  _ecefY: -4259015.841733763
+  _ecefZ: 3888533.910072524
   _scale: 1
 --- !u!4 &1412293156
 Transform:
@@ -618,7 +618,7 @@ Transform:
   m_GameObject: {fileID: 1608468725}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.12, z: 0}
+  m_LocalPosition: {x: -242.9, y: -0.12, z: 401.28}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -878,17 +878,17 @@ PrefabInstance:
     - target: {fileID: 5848843318850528148, guid: 18a053ae77bdc1a4789763f36cb36517,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -22.8
       objectReference: {fileID: 0}
     - target: {fileID: 5848843318850528148, guid: 18a053ae77bdc1a4789763f36cb36517,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 3.42
       objectReference: {fileID: 0}
     - target: {fileID: 5848843318850528148, guid: 18a053ae77bdc1a4789763f36cb36517,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -5.7
       objectReference: {fileID: 0}
     - target: {fileID: 5848843318850528148, guid: 18a053ae77bdc1a4789763f36cb36517,
         type: 3}

@@ -27,20 +27,26 @@ public class SkyboxManager : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.Alpha1))
         {
-            print("Immersive_Statue of Liberty");
+            print("TokyoTower");
             SetSkybox(1);
         }
 
-        if (Input.GetKeyUp(KeyCode.Alpha6))
+        if (Input.GetKeyUp(KeyCode.Alpha2))
         {
-            print("Immersive_Colosseum");
+            print("St.Peter's Bascilica");
             SetSkybox(2);
         }
 
-        if (Input.GetKeyUp(KeyCode.Alpha9))
+        if (Input.GetKeyUp(KeyCode.Alpha3))
         {
-            print("Immersive_Eiffel Tower");
+            print("Pantheon");
             SetSkybox(3);
+        }
+
+        if (Input.GetKeyUp(KeyCode.Alpha0))
+        {
+            print("Default");
+            SetSkybox(0);
         }
 
     }
