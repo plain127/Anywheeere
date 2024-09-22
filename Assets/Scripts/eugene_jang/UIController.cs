@@ -103,11 +103,11 @@ public class UIController : MonoBehaviour
             print("NYC");
             CesiumMap.GetComponent<CesiumSamplesFlyToLocationHandler>().FlyToLocation(1);
             // 뉴욕으로 이동 할 꺼임 
-            jsonData = "{\"text\":\"자유의여신상\"}";
+            jsonData = "{\"text\":\"Italy\"}";
 
             GetDocent();
             
-            //docentText.text = "자유의 여신상 도슨트 블라라";
+            //docentText.text = "테스트 USA 도슨트 블라라";
         }
         
         if (Input.GetKeyUp(KeyCode.Alpha2))

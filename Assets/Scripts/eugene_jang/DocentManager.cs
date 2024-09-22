@@ -71,6 +71,7 @@ public class DocentManager : MonoBehaviour
 
             // 미리 받아놓은 오디오의 재생
             // 전체 플로우 관리는 어디서 하는가.. ?
+
             StartCoroutine(GetDecentAudioFromAI(url + "audio"));
         }
     }

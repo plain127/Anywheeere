@@ -52,7 +52,11 @@ public class AlphaMapMgr : MonoBehaviour
     {
         if(audioSource != null)
         {
-            Destroy(audioSource);
+            AudioSource[] audioSources = GetComponents<AudioSource>();
+            foreach (AudioSource audioSource in audioSources)
+            {
+                Destroy(audioSource);
+            }
             print("잘 자요");
         }
         CountryPanel.SetActive(true);
@@ -72,7 +76,7 @@ public class AlphaMapMgr : MonoBehaviour
     {
         print(country);
         // country 로 이동
-        // country 의 docent audio 받아오기 
+        // country 의 docent audio 받아오기 ??
 
         CountryPanel.SetActive(false);
         if(country == "USA")
@@ -91,7 +95,8 @@ public class AlphaMapMgr : MonoBehaviour
     {
         print(city);
         // city 로 이동
-        // city 의 docent audio 받아오기 
+        // city 의 docent audio 받아오기 ??
+
         if(city == "NewYork") 
         { 
             NYCPanel.SetActive(true); 
@@ -121,6 +126,8 @@ public class AlphaMapMgr : MonoBehaviour
             KyotoPanel.SetActive(true);
         }
         JapanPanel.SetActive(false);
+
+
     }
 
     public void SelectMonument(string monument)
