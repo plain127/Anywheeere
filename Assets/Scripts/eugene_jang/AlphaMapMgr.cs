@@ -76,7 +76,7 @@ public class AlphaMapMgr : MonoBehaviour
     {
         print(country);
         // country 로 이동
-        // country 의 docent audio 받아오기 ??
+        // country 의 docent audio 받아오기 ?? !! 응 됨
 
         CountryPanel.SetActive(false);
         if(country == "USA")
@@ -95,7 +95,7 @@ public class AlphaMapMgr : MonoBehaviour
     {
         print(city);
         // city 로 이동
-        // city 의 docent audio 받아오기 ??
+        // city 의 docent audio 받아오기 ?? !! 되겠지 ? ㅇㅇ 
 
         if(city == "NewYork") 
         { 
