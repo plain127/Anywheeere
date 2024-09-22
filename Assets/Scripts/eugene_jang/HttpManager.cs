@@ -5,14 +5,13 @@ using UnityEngine.Networking;  // http 통신을 위한 네임 스페이스
 using System.Text;      // json, csv 같은 문서 형태의 인코딩  (UTF-8)을 위한 네임 스페이스
 using UnityEngine.UI;
 using System;
-using System.Xml.Serialization;
-using static System.Net.WebRequestMethods;
 
 
 public class HttpManager : MonoBehaviour
 {
     public string url;
     public Text text_response;
+    public Text text_Docent;
     public RawImage img_response;
 
     public List<InputField> userInputs = new List<InputField>();
@@ -194,12 +193,12 @@ public class HttpManager : MonoBehaviour
 
     public void PostJsonToAI()
     {
-        StartCoroutine(PostPointJsonRequest(url+"docent"));
+        StartCoroutine(PostPointJsonRequest(url));
     }
     IEnumerator PostPointJsonRequest(string url)
     {
         string jsonData = "{\"text\":\"자유의여신상\"}";       
-        using(UnityWebRequest www = UnityWebRequest.Get("http://meta-ai.iptime.org:9000/docent"))
+        using(UnityWebRequest www = UnityWebRequest.Get("http://metaai.iptime.org:9000/docent"))
         {
             byte [] jsonByte = Encoding.UTF8.GetBytes(jsonData);
             www.uploadHandler = new UploadHandlerRaw(jsonByte);
@@ -210,8 +209,9 @@ public class HttpManager : MonoBehaviour
             {
                 Debug.LogError(www.downloadHandler.text);
                 text_response.text = www.downloadHandler.text;
-                
-            }
+                text_Docent.text = www.downloadHandler.text;
+
+}
             else
             {
                 Debug.LogError(www.error);
@@ -256,7 +256,7 @@ public class HttpManager : MonoBehaviour
         // 보낼 json 데이터를 준비함
         string jsonData = "{\"path\":\"./result.wav\"}";
         // url로 요청을 보내고 받을 파일을 지정함? // Json으로 받는거 아닌가.. ?
-        using (UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip("http://meta-ai.iptime.org:9000/audio", AudioType.WAV ))
+        using (UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip("http://metaai.iptime.org:9000/audio", AudioType.WAV ))
         {
             byte[] jsonByte = Encoding.UTF8.GetBytes(jsonData);
             www.uploadHandler = new UploadHandlerRaw(jsonByte);

@@ -239,12 +239,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CesiumMap: {fileID: 666272555}
   skyboxManager: {fileID: 701472546}
-  url: http://meta-ai.iptime.org:9000/docent
+  url: http://metaai.iptime.org:9000/
   docent: 
   audioAddress: 
   docentAudio: {fileID: 0}
   docentUI: {fileID: 1035766335}
   docentText: {fileID: 38367595}
+  mapUI: {fileID: 0}
+  countryPanel: {fileID: 0}
+  cityPanel: {fileID: 0}
+  monumentPanel: {fileID: 0}
+  countryButtons: []
+  cityButtons: []
+  monumentButtons: []
 --- !u!1 &28615888
 GameObject:
   m_ObjectHideFlags: 1
