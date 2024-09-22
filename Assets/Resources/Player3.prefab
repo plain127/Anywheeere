@@ -572,7 +572,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 437807e6cea498b4e8f0f7c11f791f52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 12
   jumpPower: 3
   cam: {fileID: 579320829346826087}
   lerpSpeed: 50
@@ -592,7 +592,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cubeFactory: {fileID: 3575979856241181112, guid: 41df051cc7163874888530e48ca074b4,
     type: 3}
-  impactFactory: {fileID: 8764043878647920493, guid: c4ed38c72957f2241ad144a1614956d9,
+  impactFactory: {fileID: 4021103657954561961, guid: 5c755f9bc5253ea418e919994537dcc7,
     type: 3}
   bulletFactory: {fileID: 6137823909325658825, guid: 756b16e3c3be01a45a8d9eeaaf372959,
     type: 3}

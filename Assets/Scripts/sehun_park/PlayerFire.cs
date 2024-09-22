@@ -61,38 +61,38 @@ public class PlayerFire : MonoBehaviourPun
             Debug.Log("총알 발사됨");
         }
         // 마우스 가운데 휠 버튼 눌렀을때
-        if (Input.GetMouseButtonDown(2))
-        {
-            photonView.RPC(nameof(CreateBullet), RpcTarget.All, firePos.position, Camera.main.transform.rotation);
-        }
+        //if (Input.GetMouseButtonDown(2))
+        //{
+        //    photonView.RPC(nameof(CreateBullet), RpcTarget.All, firePos.position, Camera.main.transform.rotation);
+        //}
 
-        // 마우스 오른쪽 버튼 누르면
-        if (Input.GetMouseButtonDown(1))
-        {
-            // 카메라 위치, 카메라 앞방향으로 된 Ray를 만들자.
-            Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
-            // 만들어진 Ray 를 이용해서 Raycast 하자.
-            RaycastHit hit;
-            // 만약 부딪힌 지점이 있으면
-            if (Physics.Raycast(ray, out hit))
-            {
-                // 폭발효과를 생성하고 부딪힌 위치에 놓자.
-                //CreateImpact(hit.point);
-                photonView.RPC(nameof(CreateImpact), RpcTarget.All, hit.point);
+        //// 마우스 오른쪽 버튼 누르면
+        //if (Input.GetMouseButtonDown(1))
+        //{
+        //    // 카메라 위치, 카메라 앞방향으로 된 Ray를 만들자.
+        //    Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+        //    // 만들어진 Ray 를 이용해서 Raycast 하자.
+        //    RaycastHit hit;
+        //    // 만약 부딪힌 지점이 있으면
+        //    if (Physics.Raycast(ray, out hit))
+        //    {
+        //        // 폭발효과를 생성하고 부딪힌 위치에 놓자.
+        //        //CreateImpact(hit.point);
+        //        photonView.RPC(nameof(CreateImpact), RpcTarget.All, hit.point);
 
-                // 부딪힌 놈의 데미지를 주자.
-                HPSystem hpSystem = hit.transform.GetComponentInChildren<HPSystem>();
-                if (hpSystem != null)
-                {
-                    hpSystem.UpdateHP(-1);
-                }
-            }
+        //        // 부딪힌 놈의 데미지를 주자.
+        //        HPSystem hpSystem = hit.transform.GetComponentInChildren<HPSystem>();
+        //        if (hpSystem != null)
+        //        {
+        //            hpSystem.UpdateHP(-1);
+        //        }
+        //    }
 
-            // 내 턴을 끝내자
-            isMyTurn = false;
-            // GameManger 에게 턴 넘겨달라고 요청
-            Game2Manager.instance.ChangeTurn();
-        }
+        //    // 내 턴을 끝내자
+        //    isMyTurn = false;
+        //    // GameManger 에게 턴 넘겨달라고 요청
+        //    Game2Manager.instance.ChangeTurn();
+        //}
 
         // 1 번키 누르면
         if (Input.GetKeyDown(KeyCode.Alpha1))
