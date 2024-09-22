@@ -45,6 +45,14 @@ MonoBehaviour:
   - CantHearYou
   - ChangeColour
   - HeresWhy
+  - CreateBullet
+  - CreateCube
+  - CreateImpact
+  - CreatExplo
+  - RpcAddPlayer
+  - RpcChangeTurn
+  - RpcUpdateHP
+  - SetTrigger
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0

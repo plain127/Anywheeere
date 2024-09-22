@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/sehun_park/ConnectionScene.unity
     guid: fe14359f1849aba4d94e7a4b1cc0f334
   - enabled: 0
-    path: Assets/Scenes/sehun_park/GameScene.unity
+    path: Assets/Scenes/sehun_park/DeScene.unity
     guid: f2bf310721adde84d87e9e1820ac0598
   - enabled: 0
     path: Assets/Scenes/sehun_park/MapTestScene.unity

@@ -97,8 +97,6 @@ public class DocentManager : MonoBehaviour
             audioSource.Play();
             // docentAudio를 실행 해야 할 때 실행 한다.(어디에 넣어 놓을까~?)
         }
-
-
     }
 
 
