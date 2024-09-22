@@ -148,6 +148,15 @@ public class CesiumSamplesFlyToLocationHandler : MonoBehaviourPun
 #endif
     }
 
+    public static bool GetKey0Down()
+    {
+#if ENABLE_INPUT_SYSTEM
+        return Keyboard.current.digit0Key.isPressed || Keyboard.current.numpad0Key.isPressed;
+#else
+        return Input.GetKeyDown(KeyCode.Alpha0) || Input.GetKeyDown(KeyCode.Keypad0);
+#endif
+    }
+
     public static int? GetKeyboardInput()
     {
         if (GetKey1Down())
@@ -188,6 +197,11 @@ public class CesiumSamplesFlyToLocationHandler : MonoBehaviourPun
         if (GetKey8Down())
         {
             return 8;
+        }
+
+        if (GetKey0Down())
+        {
+            return 0;
         }
 
         return null;

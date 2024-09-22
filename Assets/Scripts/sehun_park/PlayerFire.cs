@@ -48,7 +48,7 @@ public class PlayerFire : MonoBehaviourPun
         if (isDie) return;
 
         // 내 턴이 아니라면 함수를 나가자
-        if (!isMyTurn) return;
+        // if (!isMyTurn) return;
 
         // 마우스 왼쪽 버튼 누르면
         if (Input.GetMouseButtonDown(0))
