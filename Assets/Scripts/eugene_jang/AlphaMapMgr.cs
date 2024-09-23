@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 using static DocentManager;
-using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
+// using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 using static UnityEngine.XR.ARSubsystems.XRCpuImage;
 
 public class AlphaMapMgr : MonoBehaviour
