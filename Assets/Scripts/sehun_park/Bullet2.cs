@@ -11,6 +11,8 @@ public class Bullet2 : MonoBehaviourPun
     // 충돌 되었을 때 효과 Prefab
     public GameObject exploFactory;
 
+    public AudioClip explosionSound;
+
     void Start()
     {
         // 내것일때만 
@@ -38,6 +40,9 @@ public class Bullet2 : MonoBehaviourPun
             // 폭발효과를 만들자
             photonView.RPC(nameof(CreatExplo), RpcTarget.All, transform.position, hit.normal);
 
+            // 사운드 재생
+            photonView.RPC(nameof(PlayExplosionSound), RpcTarget.All);
+
             // 나를 파괴하자
             PhotonNetwork.Destroy(gameObject);
         }
@@ -52,5 +57,12 @@ public class Bullet2 : MonoBehaviourPun
         explo.transform.position = position;
         // 생성된 효과의 앞방향을 부딪힌 지점의 normal 바꾸자
         explo.transform.forward = normal;
+    }
+
+    [PunRPC]
+    void PlayExplosionSound()
+    {
+        // 사운드 재생
+        AudioSource.PlayClipAtPoint(explosionSound, transform.position);
     }
 }

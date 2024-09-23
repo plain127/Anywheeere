@@ -190,3 +190,4 @@ MonoBehaviour:
   moveSpeed: 37
   exploFactory: {fileID: 7022268795503775816, guid: 7377f38a94f13bd43924090d4a77f29e,
     type: 3}
+  explosionSound: {fileID: 8300000, guid: d31072b4874327143a8b155b8e08b6d8, type: 3}
