@@ -416,9 +416,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 368861300}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.023151519, y: 0.95443004, z: -0.28743255, w: -0.076875426}
-  m_LocalPosition: {x: -221.22, y: -80.9, z: 299.17}
-  m_LocalScale: {x: 1.0000231, y: 1.0000004, z: 1.000022}
+  m_LocalRotation: {x: 0.7316889, y: -0.12201576, z: -0.038416795, w: -0.66952795}
+  m_LocalPosition: {x: -1602191, y: -10211827, z: -4811889}
+  m_LocalScale: {x: 1.0000231, y: 1.0000005, z: 1.0000222}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 666272557}
@@ -546,24 +546,24 @@ MonoBehaviour:
   _detectTransformChanges: 1
   _localToGlobeFixedMatrix:
     c0:
-      x: -0.7847311849521735
-      y: 0.606699922251468
-      z: 0.12711585532241315
+      x: -0.7847312001177653
+      y: 0.6066998932089149
+      z: 0.12711587098043417
       w: 0
     c1:
-      x: -0.602486412688754
-      y: -0.7947205681418584
-      z: 0.07368892473294597
+      x: -0.60248647242188
+      y: -0.7947206667236382
+      z: 0.07368909494719349
       w: 0
     c2:
-      x: -0.14572844347428845
-      y: 0.01875954818233211
-      z: -0.989169056335281
+      x: -0.14572857634371994
+      y: 0.018759443805105084
+      z: -0.9891691638129679
       w: 0
     c3:
-      x: -2693853.2103951243
-      y: -4297027.869146249
-      z: 3854906.346369441
+      x: -2693853.0451079016
+      y: -4297027.754176703
+      z: 3854906.4238120364
       w: 1
   _localToGlobeFixedMatrixIsValid: 1
 --- !u!114 &368861305
@@ -909,13 +909,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ellipsoidOverride: {fileID: 0}
-  _originAuthority: 1
-  _latitude: 37.42112815810239
-  _longitude: -122.08154445713099
-  _height: 168.26194278623106
-  _ecefX: -2693796.45373749
-  _ecefY: -4297353.838092205
-  _ecefZ: 3854717.908782406
+  _originAuthority: 0
+  _latitude: -90
+  _longitude: 39.5
+  _height: 168.26194278464558
+  _ecefX: 0.00000000030237837396044877
+  _ecefY: 0.00000000024926149593992747
+  _ecefZ: -6356920.576187964
   _scale: 1
 --- !u!4 &666272557
 Transform:
@@ -981,6 +981,7 @@ MonoBehaviour:
   - {x: -120, y: 10}
   - {x: -160, y: 25}
   - {x: 150, y: 20}
+  locationButtons: []
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
