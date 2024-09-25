@@ -32,6 +32,18 @@ public class Bullet2 : MonoBehaviourPun
         // 내것일때만 
         if (photonView.IsMine)
         {
+            // 플레이어와 충돌했는지 확인
+            if (other.CompareTag("Player"))
+            {
+                // HPSystem 컴포넌트를 가져옴
+                HPSystem hpSystem = other.GetComponent<HPSystem>();
+                if (hpSystem != null)
+                {
+                    // HP 1 감소 (네트워크 상에서 적용)
+                    hpSystem.UpdateHP(-1f);
+                }
+            }
+
             // 부딪힌 지점을 향해서 Raycast 하자.
             Ray ray = new Ray(Camera.main.transform.position, transform.position - Camera.main.transform.position);
             RaycastHit hit;

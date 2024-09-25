@@ -175,7 +175,7 @@ public class PlayerFire : MonoBehaviourPun
 
     // isMyTurn 을 변경해주는 함수
     [PunRPC]
-    void RpcChangeTurn(bool turn)
+    public void RpcChangeTurn(bool turn)
     {
         isMyTurn = turn;
     }
