@@ -6,17 +6,17 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/joonki_hong/Beta/ConnectionScene_Beta_JK.unity
-    guid: 89f7d4374c70d004881f6fa7f378bfc8
+    path: Assets/Scenes/main/Beta/ConnectionScene_Beta.unity
+    guid: 49378080cabe86c4e91c07e629c36ed2
   - enabled: 1
-    path: Assets/Scenes/joonki_hong/Beta/03_CesiumSanFrancisco_Beta_JK.unity
-    guid: 0e7849747c287ff45938870a635e0fff
+    path: Assets/Scenes/main/Beta/LobbyScene_Beta.unity
+    guid: 5c49bcef6f716444baa6fcf0056c2154
   - enabled: 1
-    path: Assets/Scenes/joonki_hong/Beta/CesiumGoogleMapsTiles_Beta_JK.unity
-    guid: b21a17acecc2cde458c580ab212e1494
+    path: Assets/Scenes/main/Beta/CesiumGoogleMapsTiles_Beta.unity
+    guid: 6478bb8c73682954eaf30273a21a1284
   - enabled: 1
-    path: Assets/Scenes/joonki_hong/Beta/LobbyScene_Beta_JK.unity
-    guid: 342b7c02e38d0064daa670b99dc4779f
+    path: Assets/Scenes/main/Beta/03_CesiumSanFrancisco_Beta.unity
+    guid: 2583e95cced434f4881b3c2bc298d80b
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 264e5cd962a27ab40b75452220c81b6e,
       type: 2}
