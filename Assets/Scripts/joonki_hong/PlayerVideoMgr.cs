@@ -30,10 +30,20 @@ public class PlayerVideoMgr : MonoBehaviourPunCallbacks
 
         // 자신이 로컬 플레이어라면 PhotonVoiceView 할당
         AssignVoiceViewForPlayer(PhotonNetwork.LocalPlayer);
+
+        PhotonNetwork.AutomaticallySyncScene = true;
     }
 
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            if(PhotonNetwork.IsMasterClient)
+            {
+                PhotonNetwork.LoadLevel("TestScene");
+                return;
+            }
+        }
        
 
         // 각 플레이어가 말하고 있는지 확인하여 비디오 활성화/비활성화
