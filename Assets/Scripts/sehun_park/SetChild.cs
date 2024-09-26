@@ -41,9 +41,7 @@ public class SetChild : MonoBehaviourPun
 
         playerVideoMgr = GameObject.Find("GameManager").GetComponent<PlayerVideoMgr>();
         pvv = GetComponent<PhotonVoiceView>();
-        enterOrder = photonView.ViewID / 1000 - 1;
         enterOrder = photonView.Owner.ActorNumber - 1;
-        print(photonView.Owner.ActorNumber);
     }
 
     private void Update()
