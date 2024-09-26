@@ -6,7 +6,7 @@ public class SphereManager : MonoBehaviour
 {
     public Material sphereMaterial;  // 셰이더에 연결된 머티리얼
     public float duration = 3.0f;    // 값이 서서히 변화하는 시간
-    public List<Texture2D> textures; // 퍼블릭으로 선언된 텍스처 리스트
+    public Texture2D[] textures = new Texture2D[33]; // 퍼블릭으로 선언된 텍스처 리스트
     private int currentTextureIndex = 0; // 현재 텍스처 인덱스
 
     private bool isIncreasing = true; // 값이 0에서 1로 증가 중인지 여부
@@ -16,10 +16,12 @@ public class SphereManager : MonoBehaviour
 
     private bool isRunning = false;  // 코루틴 실행 중인지 여부
 
+    public int preIdx;
+
     void Start()
     {
-        // 첫 번째 텍스처를 기본 텍스처로 설정
-        if (textures.Count > 0)
+        //첫 번째 텍스처를 기본 텍스처로 설정
+        if (textures.Length > 0)
         {
             sphereMaterial.SetTexture("_Texture2D", textures[currentTextureIndex]);
         }
@@ -27,20 +29,19 @@ public class SphereManager : MonoBehaviour
 
     void Update()
     {
-        // i 키를 눌렀을 때 다음 텍스처로 변경
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            ChangeTexture(1);
-        }
+        int curIdx = BetaDocentMgr.Instance.idx;
 
-        // o 키를 눌렀을 때 이전 텍스처로 변경
-        if (Input.GetKeyDown(KeyCode.O))
+        if (preIdx != curIdx)
         {
-            ChangeTexture(-1);
+            preIdx = curIdx;
+            
+            print("sphere 인덱스가 바뀌었어요"+curIdx);
+            // sphere의 texture2D를 sphere textuers[idx]의 texture2D로 변경 
+            ChangeTexture(curIdx);
         }
 
         // space바를 눌렀을 때 값 변화 시작/반전
-        if (Input.GetKeyDown(KeyCode.Space) && !isRunning)
+        if (Input.GetKeyDown(KeyCode.I) && !isRunning)
         {
             // 코루틴을 시작하고 방향을 설정
             if (isIncreasing)
@@ -58,19 +59,9 @@ public class SphereManager : MonoBehaviour
     }
 
     // 텍스처를 변경하는 함수
-    void ChangeTexture(int change)
+    void ChangeTexture(int idx)
     {
-        currentTextureIndex += change;
-
-        // 인덱스가 리스트의 범위를 벗어나지 않도록 제한
-        if (currentTextureIndex >= textures.Count)
-        {
-            currentTextureIndex = 0; // 마지막을 넘으면 첫 번째로 순환
-        }
-        else if (currentTextureIndex < 0)
-        {
-            currentTextureIndex = textures.Count - 1; // 첫 번째를 넘으면 마지막으로 순환
-        }
+        currentTextureIndex = idx;
 
         // 새로운 텍스처를 머티리얼에 적용
         sphereMaterial.SetTexture("_Texture2D", textures[currentTextureIndex]);
