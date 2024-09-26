@@ -21,7 +21,7 @@ public class BetaDocentMgr : MonoBehaviour
 
     public GameObject mapPanel;
 
-    public int idx;
+    public int idx = 1;
     string jsonData;
 
     public GameObject CountryPanel;
@@ -75,8 +75,7 @@ public class BetaDocentMgr : MonoBehaviour
         // t 버튼을 누르면 도슨트 발사!
         if (Input.GetKeyDown(KeyCode.T))
         {
-
-            PlayAudioClip(audioSource.clip);
+            GetAudioDocent();
         }
 
     }
@@ -151,9 +150,10 @@ public class BetaDocentMgr : MonoBehaviour
         else if (monument == "디즈니 랜드") { idx = 32; }
 
 
-        CesiumMap.GetComponent<CesiumSamplesFlyToLocationHandler>().FlyToLocation(idx);
+        print("도슨트 받앙");
         GetDocent(monument);
         GetAudioDocent();
+        CesiumMap.GetComponent<CesiumSamplesFlyToLocationHandler>().FlyToLocation(idx);
     }
 
     public void GetDocent(string target)
@@ -194,8 +194,12 @@ public class BetaDocentMgr : MonoBehaviour
 
             if (www.result == UnityWebRequest.Result.Success)
             {
+                print("된다?");
                 DownloadHandlerAudioClip downloadHandler = www.downloadHandler as DownloadHandlerAudioClip;
-                audioSource.clip = downloadHandler.audioClip;
+                
+                print("오디오 도슨트 발싸");
+                GetComponent<BetaDocentMgr>().audioSource.clip = downloadHandler.audioClip;
+                PlayAudioClip(downloadHandler.audioClip);
             }
         }
     }
@@ -214,14 +218,9 @@ public class BetaDocentMgr : MonoBehaviour
 
         // 지울 것들은 지우고 
         // 필요한 오디오 재생
-
-        audioSource= gameObject.AddComponent<AudioSource>();
+        audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.clip = clip;
         audioSource.Play();
     }
-
-    
-
-
 
 }
