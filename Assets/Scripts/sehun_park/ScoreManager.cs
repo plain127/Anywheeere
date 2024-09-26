@@ -31,6 +31,7 @@ public class ScoreManager : MonoBehaviour
     public void AddScore(int amount)
     {
         score += amount;
+        Debug.Log("점수 추가됨. 현재 점수: " + score);  // 점수 추가 로그
         UpdateScoreUI();
     }
 
@@ -40,6 +41,10 @@ public class ScoreManager : MonoBehaviour
         if (scoreText != null)
         {
             scoreText.text = "Score: " + score.ToString();
+        }
+        else
+        {
+            Debug.LogWarning("ScoreText가 설정되지 않았습니다.");
         }
     }
 }
