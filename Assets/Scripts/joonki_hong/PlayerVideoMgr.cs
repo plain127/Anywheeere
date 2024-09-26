@@ -37,42 +37,42 @@ public class PlayerVideoMgr : MonoBehaviourPunCallbacks
     void Update()
     {
 
-        // 각 플레이어가 말하고 있는지 확인하여 비디오 활성화/비활성화
-        if (playerVoiceViews[0] != null && playerVoiceViews[0].IsSpeaking)
-        {
-            firstPlayerVideo.enabled = true;
-        }
-        else
-        {
-            firstPlayerVideo.enabled = false;
-        }
+       // // 각 플레이어가 말하고 있는지 확인하여 비디오 활성화/비활성화
+       // if (playerVoiceViews[0] != null && playerVoiceViews[0].IsSpeaking)
+       // {
+       //     firstPlayerVideo.enabled = true;
+       // }
+       // else
+       // {
+       //     firstPlayerVideo.enabled = false;
+       // }
 
-       // Debug.LogError(playerVoiceViews[1].IsSpeaking);
-       // Debug.LogError(playerVoiceViews[1].IsRecording);
+       //// Debug.LogError(playerVoiceViews[1].IsSpeaking);
+       //// Debug.LogError(playerVoiceViews[1].IsRecording);
 
-        if (playerVoiceViews[1] != null && playerVoiceViews[1].IsSpeaking)
-        {
-            secondPlayerVideo.enabled = true;
-            //Debug.Log(playerVoiceViews[1]);
-            //Debug.Log(playerVoiceViews[1].IsSpeaking);
+       // if (playerVoiceViews[1] != null && playerVoiceViews[1].IsSpeaking)
+       // {
+       //     secondPlayerVideo.enabled = true;
+       //     //Debug.Log(playerVoiceViews[1]);
+       //     //Debug.Log(playerVoiceViews[1].IsSpeaking);
 
-        }
-        else
-        {
-            secondPlayerVideo.enabled = false;
-            //Debug.Log(playerVoiceViews[1]);
-            //Debug.Log(playerVoiceViews[1].IsSpeaking);
-        }
+       // }
+       // else
+       // {
+       //     secondPlayerVideo.enabled = false;
+       //     //Debug.Log(playerVoiceViews[1]);
+       //     //Debug.Log(playerVoiceViews[1].IsSpeaking);
+       // }
 
-        if (playerVoiceViews[2] != null && playerVoiceViews[2].IsSpeaking)
-        {
-            thirdPlayerVideo.enabled = true;
+       // if (playerVoiceViews[2] != null && playerVoiceViews[2].IsSpeaking)
+       // {
+       //     thirdPlayerVideo.enabled = true;
 
-        }
-        else
-        {
-            thirdPlayerVideo.enabled = false;
-        }
+       // }
+       // else
+       // {
+       //     thirdPlayerVideo.enabled = false;
+       // }
     }
 
     // 플레이어가 방에 들어올 때 호출되는 함수
