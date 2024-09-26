@@ -40,7 +40,7 @@ public class SphereManager : MonoBehaviour
             ChangeTexture(curIdx);
         }
 
-        // space바를 눌렀을 때 값 변화 시작/반전
+        // I바를 눌렀을 때 값 변화 시작/반전
         if (Input.GetKeyDown(KeyCode.I) && !isRunning)
         {
             // 코루틴을 시작하고 방향을 설정
