@@ -837,6 +837,10 @@ MonoBehaviour:
   firstPlayerVideo: {fileID: 61803535}
   secondPlayerVideo: {fileID: 917950093}
   thirdPlayerVideo: {fileID: 1473371929}
+  playerVideo:
+  - {fileID: 61803535}
+  - {fileID: 917950093}
+  - {fileID: 1473371929}
   playerVoiceViews:
   - {fileID: 0}
   - {fileID: 0}

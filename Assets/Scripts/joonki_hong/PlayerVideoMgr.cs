@@ -11,8 +11,15 @@ public class PlayerVideoMgr : MonoBehaviourPunCallbacks
     public RawImage secondPlayerVideo;
     public RawImage thirdPlayerVideo;
 
+    public RawImage [] playerVideo;
+
     // 플레이어들의 PhotonVoiceView 컴포넌트
     public PhotonVoiceView[] playerVoiceViews = new PhotonVoiceView[3];
+
+    public void UpdatePlayerVideo(int idx, bool isEnable)
+    {
+        playerVideo[idx].enabled = isEnable;
+    }
 
     void Start()
     {
@@ -27,6 +34,8 @@ public class PlayerVideoMgr : MonoBehaviourPunCallbacks
 
     void Update()
     {
+       
+
         // 각 플레이어가 말하고 있는지 확인하여 비디오 활성화/비활성화
         if (playerVoiceViews[0] != null && playerVoiceViews[0].IsSpeaking)
         {
@@ -37,8 +46,8 @@ public class PlayerVideoMgr : MonoBehaviourPunCallbacks
             firstPlayerVideo.enabled = false;
         }
 
-        Debug.LogError(playerVoiceViews[1].IsSpeaking);
-        Debug.LogError(playerVoiceViews[1].IsRecording);
+       // Debug.LogError(playerVoiceViews[1].IsSpeaking);
+       // Debug.LogError(playerVoiceViews[1].IsRecording);
 
         if (playerVoiceViews[1] != null && playerVoiceViews[1].IsSpeaking)
         {
