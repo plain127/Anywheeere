@@ -10,7 +10,7 @@ public class HPSystem : MonoBehaviourPun
     // 최대 HP
     public float maxHP;
     // 현재 HP
-    float currHP;
+    public float currHP;
     // HPBar Image
     public Image hpBar;
     // HP 가 0 이 되었을 때 호출되는 함수를 담을 변수

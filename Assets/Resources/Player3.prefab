@@ -468,9 +468,11 @@ GameObject:
   - component: {fileID: 7866455121204810688}
   - component: {fileID: 5212961941153330213}
   - component: {fileID: 5695747022568991414}
+  - component: {fileID: 4855565592012925679}
+  - component: {fileID: 9028126761806738574}
   m_Layer: 6
   m_Name: Player3
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -574,6 +576,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 12
   jumpPower: 3
+  dashDistance: 10
+  dashDuration: 0.2
+  dashCooldown: 5
   cam: {fileID: 579320829346826087}
   lerpSpeed: 50
   lookPos: {fileID: 7229682697219100091}
@@ -617,6 +622,44 @@ MonoBehaviour:
   useRotX: 0
   useRotY: 1
   pv: {fileID: 5111682845695220158}
+--- !u!136 &4855565592012925679
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4191334359631174606}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2.1537707
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.0984291, z: 0}
+--- !u!114 &9028126761806738574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4191334359631174606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9095e0fc0e9a3d34eaa983c61ecbab2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHP: 1000
+  currHP: 0
+  hpBar: {fileID: 1489238134322022069}
 --- !u!1 &4398949751539651662
 GameObject:
   m_ObjectHideFlags: 0
@@ -1069,12 +1112,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7882055232535129365}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9095e0fc0e9a3d34eaa983c61ecbab2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 5
+  maxHP: 1000
+  currHP: 0
   hpBar: {fileID: 1489238134322022069}
 --- !u!1 &8441439033299518280
 GameObject:

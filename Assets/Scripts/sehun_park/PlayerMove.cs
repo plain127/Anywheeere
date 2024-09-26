@@ -19,6 +19,15 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
     // 점프 초기 속력
     public float jumpPower = 3;
 
+    // 대쉬 관련 변수
+    public float dashDistance = 10f;  // 대쉬 거리
+    public float dashDuration = 0.2f; // 대쉬 시전 시간
+    public float dashCooldown = 5f;   // 대쉬 쿨타임
+    private bool canDash = true;      // 대쉬 가능 여부
+    private bool isDashing = false;   // 대쉬 중인지 여부
+    private Vector3 dashDirection;    // 대쉬 방향
+    private float dashTimeLeft;       // 남은 대쉬 시간
+
     // 카메라 
     public GameObject cam;
 
@@ -122,8 +131,20 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
             //dir = dir * moveSpeed;
             //dir.y = yVelocity;
             //cc.Move(dir * Time.deltaTime);
-            #endregion           
+            #endregion
+
+            // 대쉬 처리
+            if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
+            {
+                StartDash(dir);  // 대쉬 시작
+            }
+
+            else
+            {
+                DashMove();
+            }
         }
+
         // 나의 Player 아니라면
         else
         {
@@ -137,7 +158,35 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
         anim.SetFloat("DirH", h);
         anim.SetFloat("DirV", v);
     }
+    // 대쉬 시작 메서드
+    private void StartDash(Vector3 dir)
+    {
+        dashDirection = dir;
+        dashTimeLeft = dashDuration;
+        isDashing = true;
+        canDash = false;
+        Invoke(nameof(ResetDash), dashCooldown);  // 쿨타임 시작
+    }
 
+    // 대쉬 이동 메서드
+    private void DashMove()
+    {
+        if (dashTimeLeft > 0)
+        {
+            cc.Move(dashDirection * (dashDistance / dashDuration) * Time.deltaTime);
+            dashTimeLeft -= Time.deltaTime;
+        }
+        else
+        {
+            isDashing = false;
+        }
+    }
+
+    // 대쉬 쿨타임 초기화 메서드
+    private void ResetDash()
+    {
+        canDash = true;
+    }
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         // 만약에 내가 데이터를 보낼 수 있는 상태라면 (내 것이라면)
