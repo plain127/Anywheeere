@@ -1,5 +1,6 @@
 using Photon.Pun;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Bullet2 : MonoBehaviourPun
 {
@@ -12,6 +13,9 @@ public class Bullet2 : MonoBehaviourPun
     public GameObject exploFactory;
 
     public AudioClip explosionSound;
+
+
+    int score = 0;
 
     void Start()
     {
@@ -41,6 +45,9 @@ public class Bullet2 : MonoBehaviourPun
                 {
                     // HP 1 감소 (네트워크 상에서 적용)
                     hpSystem.UpdateHP(-1f);
+
+                    // 점수 1 증가
+                    ScoreManager.instance.AddScore(1);
                 }
             }
 
@@ -59,6 +66,7 @@ public class Bullet2 : MonoBehaviourPun
             PhotonNetwork.Destroy(gameObject);
         }
     }
+
 
     [PunRPC]
     void CreatExplo(Vector3 position, Vector3 normal)
