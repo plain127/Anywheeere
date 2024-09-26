@@ -6,8 +6,12 @@ using UnityEngine.Networking;
 using UnityEngine.UI;
 using static DocentManager;
 
+
 public class BetaDocentMgr : MonoBehaviour
 {
+    public static BetaDocentMgr Instance;
+
+
     public GameObject CesiumMap;
 
     public string url;
@@ -17,6 +21,9 @@ public class BetaDocentMgr : MonoBehaviour
 
     public GameObject bgmBox;
     public GameObject docentBox;
+
+    AudioMgr bgms;
+    AudioMgr fDocents;
 
     public GameObject mapPanel;
 
@@ -38,9 +45,23 @@ public class BetaDocentMgr : MonoBehaviour
     public GameObject TokyoPanel;
     public GameObject KyotoPanel;
 
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+        Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else if (Instance != this)
+        {
+            Destroy(gameObject);
+        }
+    }
+
     void Start()
     {
-
+        bgms = bgmBox.GetComponent<AudioMgr>();
+        fDocents = docentBox.GetComponent<AudioMgr>();
     }
 
     void Update()
@@ -83,8 +104,11 @@ public class BetaDocentMgr : MonoBehaviour
         else if (country == "Italy") { idx = 1; ItalyPanel.SetActive(true);  }
         else if (country == "Japan") { idx = 2; JapanPanel.SetActive(true);  }
 
-        CesiumMap.GetComponent<CesiumSamplesFlyToLocationHandler>().FlyToLocation(idx);
         // 국가 BGM 과 설정된 Audio 재생
+        //bgms.PlayFixedAudio(bgms.audios, idx);
+        //fDocents.PlayFixedAudio(fDocents.audios, idx);
+
+        CesiumMap.GetComponent<CesiumSamplesFlyToLocationHandler>().FlyToLocation(idx);
     }
 
     public void SelectCity(string city)
@@ -102,8 +126,11 @@ public class BetaDocentMgr : MonoBehaviour
         else if (city == "Tokyo") { idx = 9; TokyoPanel.SetActive(true); }
         JapanPanel.SetActive(false);
 
-        CesiumMap.GetComponent<CesiumSamplesFlyToLocationHandler>().FlyToLocation(idx);
         // 도시 BGM 과 설정된 Audio 재생
+        //bgms.PlayFixedAudio(bgms.audios, idx);
+        //fDocents.PlayFixedAudio(fDocents.audios, idx);
+
+        CesiumMap.GetComponent<CesiumSamplesFlyToLocationHandler>().FlyToLocation(idx);
     }
 
     public void SelectMonument(string monument)
@@ -134,9 +161,11 @@ public class BetaDocentMgr : MonoBehaviour
         else if (monument == "디즈니 랜드") { idx = 32; }
 
         // 랜드마크 Audio 재생 ( BGM 따로 없음. 도시 BGM 계속 플레이)
+
+        //fDocents.PlayFixedAudio(fDocents.audios, idx);
+        CesiumMap.GetComponent<CesiumSamplesFlyToLocationHandler>().FlyToLocation(idx);
         GetDocent(monument);
         GetAudioDocent();
-        CesiumMap.GetComponent<CesiumSamplesFlyToLocationHandler>().FlyToLocation(idx);
     }
 
     public void GetDocent(string target)
@@ -194,11 +223,16 @@ public class BetaDocentMgr : MonoBehaviour
         //        Destroy(audioSource);
         //    }
         //    print("잘 자요");
-        //}
 
         // 지울 것들은 지우고 
         // 필요한 오디오 재생
+
+        audioSource= gameObject.AddComponent<AudioSource>();
+        audioSource.clip = clip;
+        audioSource.Play();
     }
+
+    
 
 
 

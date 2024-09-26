@@ -894,41 +894,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f80d493b4e1ab5643b2955f5326e3123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bgmClips:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  docentClips:
+  audioSource: {fileID: 0}
+  preIdx: 0
+  audios:
   - {fileID: 8300000, guid: 9f9b2b2cae172e8478b27529c1360053, type: 3}
   - {fileID: 8300000, guid: 453507484c9a7f74bad3e57357aba50a, type: 3}
   - {fileID: 8300000, guid: ec8d5619b961a0545b9d03b97dacb335, type: 3}
@@ -5307,41 +5275,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f80d493b4e1ab5643b2955f5326e3123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bgmClips:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  docentClips:
+  audioSource: {fileID: 0}
+  preIdx: 0
+  audios:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
