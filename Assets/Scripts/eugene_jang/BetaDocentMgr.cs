@@ -19,12 +19,6 @@ public class BetaDocentMgr : MonoBehaviour
     public AudioSource audioSource;
     public Text docentText;
 
-    public GameObject bgmBox;
-    public GameObject docentBox;
-
-    AudioMgr bgms;
-    AudioMgr fDocents;
-
     public GameObject mapPanel;
 
     public int idx;
@@ -60,8 +54,6 @@ public class BetaDocentMgr : MonoBehaviour
 
     void Start()
     {
-        bgms = bgmBox.GetComponent<AudioMgr>();
-        fDocents = docentBox.GetComponent<AudioMgr>();
     }
 
     void Update()
@@ -80,6 +72,12 @@ public class BetaDocentMgr : MonoBehaviour
 
         }
 
+        // t 버튼을 누르면 도슨트 발사!
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+
+            PlayAudioClip(audioSource.clip);
+        }
 
     }
     private void OnDisable()
@@ -104,10 +102,6 @@ public class BetaDocentMgr : MonoBehaviour
         else if (country == "Italy") { idx = 1; ItalyPanel.SetActive(true);  }
         else if (country == "Japan") { idx = 2; JapanPanel.SetActive(true);  }
 
-        // 국가 BGM 과 설정된 Audio 재생
-        //bgms.PlayFixedAudio(bgms.audios, idx);
-        //fDocents.PlayFixedAudio(fDocents.audios, idx);
-
         CesiumMap.GetComponent<CesiumSamplesFlyToLocationHandler>().FlyToLocation(idx);
     }
 
@@ -125,10 +119,6 @@ public class BetaDocentMgr : MonoBehaviour
         if      (city == "Kyoto") { idx = 8; KyotoPanel.SetActive(true); }
         else if (city == "Tokyo") { idx = 9; TokyoPanel.SetActive(true); }
         JapanPanel.SetActive(false);
-
-        // 도시 BGM 과 설정된 Audio 재생
-        //bgms.PlayFixedAudio(bgms.audios, idx);
-        //fDocents.PlayFixedAudio(fDocents.audios, idx);
 
         CesiumMap.GetComponent<CesiumSamplesFlyToLocationHandler>().FlyToLocation(idx);
     }
@@ -160,9 +150,7 @@ public class BetaDocentMgr : MonoBehaviour
         else if (monument == "도쿄 스카이 트리") { idx = 31; }
         else if (monument == "디즈니 랜드") { idx = 32; }
 
-        // 랜드마크 Audio 재생 ( BGM 따로 없음. 도시 BGM 계속 플레이)
 
-        //fDocents.PlayFixedAudio(fDocents.audios, idx);
         CesiumMap.GetComponent<CesiumSamplesFlyToLocationHandler>().FlyToLocation(idx);
         GetDocent(monument);
         GetAudioDocent();
@@ -207,7 +195,7 @@ public class BetaDocentMgr : MonoBehaviour
             if (www.result == UnityWebRequest.Result.Success)
             {
                 DownloadHandlerAudioClip downloadHandler = www.downloadHandler as DownloadHandlerAudioClip;
-                PlayAudioClip(downloadHandler.audioClip);
+                audioSource.clip = downloadHandler.audioClip;
             }
         }
     }
