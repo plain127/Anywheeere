@@ -12,9 +12,7 @@ public class CityAdvRule : MonoBehaviourPun
 
     // 타이머 UI 출력할 Text
     public Text timerText;
-
-    // 카운트다운을 출력할 Text
-    public Text countdownText;
+    public Text countdownText; // 카운트다운 텍스트
 
     // 타이머가 실행 중인지 여부
     private bool timerRunning = false;
@@ -24,7 +22,7 @@ public class CityAdvRule : MonoBehaviourPun
         // 마스터 클라이언트에서만 카운트다운 시작
         if (PhotonNetwork.IsMasterClient)
         {
-            // 5초 동안 카운트다운 후 타이머 시작
+            // 5초 카운트다운 후 타이머 시작
             photonView.RPC(nameof(StartCountdownRPC), RpcTarget.AllBuffered);
         }
     }
@@ -42,20 +40,17 @@ public class CityAdvRule : MonoBehaviourPun
         int countdown = 5;
         while (countdown > 0)
         {
-            // 카운트다운 텍스트 업데이트
-            countdownText.text = countdown.ToString();
+            countdownText.text = countdown.ToString(); // 카운트다운 텍스트 업데이트
             yield return new WaitForSeconds(1f);
             countdown--;
         }
 
-        // 카운트다운 텍스트 파괴
-        Destroy(countdownText.gameObject);
+        countdownText.text = ""; // 카운트다운이 끝나면 텍스트 지우기
 
-        // 타이머 시작
-        StartTimer();
+        StartTimer(); // 타이머 시작
     }
 
-    // 타이머 시작을 위한 RPC 호출 (모든 클라이언트에서 타이머 시작)
+    // 타이머 시작을 위한 RPC 호출
     private void StartTimer()
     {
         photonView.RPC(nameof(StartTimerRPC), RpcTarget.AllBuffered);
@@ -64,10 +59,11 @@ public class CityAdvRule : MonoBehaviourPun
     [PunRPC]
     private void StartTimerRPC()
     {
-        // 타이머 시작 설정
-        timerRunning = true;
-        // 매 1초마다 UpdateTimer() 호출
-        InvokeRepeating(nameof(UpdateTimer), 1.0f, 1.0f);
+        if (!timerRunning)
+        {
+            timerRunning = true;
+            InvokeRepeating(nameof(UpdateTimer), 1.0f, 1.0f);
+        }
     }
 
     // 매 초마다 타이머를 업데이트
@@ -75,16 +71,12 @@ public class CityAdvRule : MonoBehaviourPun
     {
         if (!timerRunning) return;
 
-        // 초가 0이면 분을 줄이고, 초를 59로 설정
         if (seconds == 0)
         {
             if (minutes == 0)
             {
-                // 타이머가 종료되면
                 timerRunning = false;
                 CancelInvoke(nameof(UpdateTimer));
-
-                // 시간이 다 되었을 때
                 TimeUp();
                 return;
             }
@@ -99,21 +91,17 @@ public class CityAdvRule : MonoBehaviourPun
             seconds--;
         }
 
-        // 타이머 UI 업데이트
         UpdateTimerUI();
     }
 
-    // 타이머 UI를 갱신하는 함수
     private void UpdateTimerUI()
     {
-        string timeText = string.Format("{0}:{1:00}", minutes, seconds);
-        timerText.text = timeText;
+        timerText.text = string.Format("{0}:{1:00}", minutes, seconds);
     }
 
-    // 시간이 다 되었을 때 호출되는 함수
     private void TimeUp()
     {
-        // 시간 종료 로그 출력
         Debug.Log("시간 종료");
+        ResultManager.instance.ShowResults();  // 결과 출력
     }
 }
