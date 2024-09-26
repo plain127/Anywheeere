@@ -85,7 +85,7 @@ public class LobbyMgr : MonoBehaviourPunCallbacks
     {
         base.OnJoinedRoom();
         print("방 입장 완료");
-        PhotonNetwork.LoadLevel("CesiumGoogleMapsTiles_main");
+        PhotonNetwork.LoadLevel("CesiumGoogleMapsTiles_Beta_JK");
     }
 
     public override void OnJoinRoomFailed(short returnCode, string message)
