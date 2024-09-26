@@ -1,11 +1,17 @@
+using Photon.Pun;
+using Photon.Voice.PUN;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SetChild : MonoBehaviour
+public class SetChild : MonoBehaviourPun
 {
     // 현재 오브젝트를 붙일 카메라의 이름
     private const string cameraName = "DynamicCamera";
+
+    public int enterOrder = 0;
+    PhotonVoiceView pvv;
+    PlayerVideoMgr playerVideoMgr;
 
     void Start()
     {
@@ -31,6 +37,25 @@ public class SetChild : MonoBehaviour
         else
         {
             Debug.LogWarning("태그가 'MainCamera'인 오브젝트를 찾을 수 없습니다.");
+        }
+
+        playerVideoMgr = GameObject.Find("GameManager").GetComponent<PlayerVideoMgr>();
+        pvv = GetComponent<PhotonVoiceView>();
+        enterOrder = photonView.ViewID / 1000 - 1;
+        enterOrder = photonView.Owner.ActorNumber - 1;
+        print(photonView.Owner.ActorNumber);
+    }
+
+    private void Update()
+    {
+        if(photonView.IsMine)
+        {
+            playerVideoMgr.UpdatePlayerVideo(enterOrder, pvv.IsRecording);
+
+        }
+        else
+        {
+            playerVideoMgr.UpdatePlayerVideo(enterOrder, pvv.IsSpeaking);
         }
     }
 }
