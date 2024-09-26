@@ -14,11 +14,23 @@ public class CityAdvRule : MonoBehaviourPun
     public Text timerText;
     public Text countdownText; // 카운트다운 텍스트
 
+    public GameObject showImage;
+    public GameObject timeOverImage;
+
     // 타이머가 실행 중인지 여부
     private bool timerRunning = false;
 
     private void Start()
     {
+        if (showImage != null)
+        {
+            showImage.SetActive(false);
+        }
+
+        if (timeOverImage != null)
+        {
+            timeOverImage.SetActive(false);
+        }
         // 마스터 클라이언트에서만 카운트다운 시작
         if (PhotonNetwork.IsMasterClient)
         {
@@ -47,7 +59,26 @@ public class CityAdvRule : MonoBehaviourPun
 
         countdownText.text = ""; // 카운트다운이 끝나면 텍스트 지우기
 
+        // 카운트다운이 끝났을 때 이미지를 보여주기 위한 RPC 호출
+        photonView.RPC(nameof(ShowImageRPC), RpcTarget.AllBuffered);
+
         StartTimer(); // 타이머 시작
+    }
+
+    [PunRPC]
+    private void ShowImageRPC()
+    {
+        StartCoroutine(ShowImage());
+    }
+
+    private IEnumerator ShowImage()
+    {
+        if (showImage != null)
+        {
+            showImage.SetActive(true); // 이미지 활성화
+            yield return new WaitForSeconds(1f);
+            showImage.SetActive(false); // 1초 후 이미지 비활성화
+        }
     }
 
     // 타이머 시작을 위한 RPC 호출
@@ -102,6 +133,28 @@ public class CityAdvRule : MonoBehaviourPun
     private void TimeUp()
     {
         Debug.Log("시간 종료");
+
+        // 타임 오버 이미지를 보여주기 위한 RPC 호출
+        photonView.RPC(nameof(ShowTimeOverImageRPC), RpcTarget.AllBuffered);
+
         ResultManager.instance.ShowResults();  // 결과 출력
+    }
+
+    // 타임 오버 이미지를 보여주기 위한 RPC
+    [PunRPC]
+    private void ShowTimeOverImageRPC()
+    {
+        StartCoroutine(ShowTimeOverImage());
+    }
+
+    // 2초 동안 타임 오버 이미지를 보여주는 코루틴
+    private IEnumerator ShowTimeOverImage()
+    {
+        if (timeOverImage != null)
+        {
+            timeOverImage.SetActive(true); // 타임 오버 이미지 활성화
+            yield return new WaitForSeconds(2f);
+            timeOverImage.SetActive(false); // 2초 후 타임 오버 이미지 비활성화
+        }
     }
 }
