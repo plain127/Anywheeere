@@ -50,7 +50,7 @@ public class BetaDocentMgr : MonoBehaviour
         if (Instance == null)
         {
         Instance = this;
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         }
         else if (Instance != this)
         {
@@ -100,7 +100,7 @@ public class BetaDocentMgr : MonoBehaviour
     public void CountryBtnOnClick(string country)
     {
         CountryPanel.SetActive(false);
-        if      (country == "USA")   { idx = 0; USAPanel.SetActive(true); }
+        if      (country == "USA")   { idx = 0; USAPanel.SetActive(true); docentText.text = "여기는 미국이지롱"; }
         else if (country == "Italy") { idx = 1; ItalyPanel.SetActive(true);  }
         else if (country == "Japan") { idx = 2; JapanPanel.SetActive(true);  }
 
@@ -113,7 +113,7 @@ public class BetaDocentMgr : MonoBehaviour
 
     public void SelectCity(string city)
     {
-        if      (city == "NewYork")         { idx = 3; NYCPanel.SetActive(true); }
+        if      (city == "NewYork")         { idx = 3; NYCPanel.SetActive(true); docentText.text = "여기는 뉴욕이지롱"; }
         else if (city == "San Francisco")   { idx = 4; SFPanel.SetActive(true); }
         else if (city == "Las Vegas")       { idx = 5; LVPanel.SetActive(true); }
         USAPanel.SetActive(false);
