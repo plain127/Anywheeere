@@ -36,6 +36,7 @@
 
 ## TTS 학습결과
 <img width="280" alt="제목 없음" src="https://github.com/user-attachments/assets/5e49061f-5b3a-45a8-9664-0df9f3025f72">
+
 - epoch : 31/1000
 - time : 36hours
 - avg_loss : 3.8572
