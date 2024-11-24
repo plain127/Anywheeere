@@ -25,7 +25,7 @@
 
 ### 프롬프트
 - 한국어
-- VectorDB 반영
+- VectorDB retriever반영
 - if구문과 for문을 자연어 스타일로 상황별 입력
 
 ## 모델 
