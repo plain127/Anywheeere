@@ -30,7 +30,8 @@
 
 ## 모델 
 ### gpt-4o-mini
-### xtts-v2
+### text-embedding-ada-002
+### XTTS_v2
 ### whisper-large-v3
 ### [Checkpoint](https://drive.google.com/file/d/1HHtytkTBMaO8LEtEK4xNvAgEgjn8vtrs/view?usp=sharing)
 
